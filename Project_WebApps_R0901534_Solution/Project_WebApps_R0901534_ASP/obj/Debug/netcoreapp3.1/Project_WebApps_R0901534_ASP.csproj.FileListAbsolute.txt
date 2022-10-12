@@ -34,3 +34,9 @@ C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_Web
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Project_WebApps_R0901534_ASP.pdb
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Project_WebApps_R0901534_ASP.genruntimeconfig.cache
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Project_WebApps_R0901534_ASP.csproj.CopyComplete
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\bin\Debug\netcoreapp3.1\libman.json
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Leaderboard\Index.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\OverMij\Index.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AdminOverMij.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Circuit.cshtml.g.cs
