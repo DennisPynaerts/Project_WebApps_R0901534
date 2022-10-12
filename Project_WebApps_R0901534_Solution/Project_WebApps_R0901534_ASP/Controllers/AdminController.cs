@@ -8,7 +8,12 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 {
     public class AdminController : Controller
     {
-        public IActionResult Index()
+        public IActionResult AdminOverMij()
+        {
+            return View();
+        }
+
+        public IActionResult Circuit()
         {
             return View();
         }
