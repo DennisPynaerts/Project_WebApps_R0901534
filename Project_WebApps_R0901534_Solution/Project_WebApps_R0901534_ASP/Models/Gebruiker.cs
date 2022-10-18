@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_WebApps_R0901534_ASP.Models
 {
@@ -20,5 +21,12 @@ namespace Project_WebApps_R0901534_ASP.Models
 
         [Required(ErrorMessage = "Gelieve een wachtwoord in te vullen!")]
         public string Wachtwoord { get; set; }
+
+        // Foreign Keys
+        public int OverMijId { get; set; }
+
+        // Navigation Properties
+
+        public OverMij OverMij { get; set; }
     }
 }

@@ -6,6 +6,7 @@
         public int KlasseId { get; set; }
 
         // Attributes
+        public string Naam { get; set; }
 
         public int MinPI { get; set; }
         public int MaxPI { get; set; }
