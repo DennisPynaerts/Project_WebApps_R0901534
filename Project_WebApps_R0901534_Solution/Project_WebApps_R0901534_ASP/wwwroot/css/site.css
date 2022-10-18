@@ -26,6 +26,10 @@ a {
     color: #FAFBFB;
 }
 
+.custom-button-color {
+    background-color: #FFBE72
+}
+
 .nav-item-bg {
     background-color: #17242D;
 }
