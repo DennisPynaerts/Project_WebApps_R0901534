@@ -1,4 +1,6 @@
-﻿namespace Project_WebApps_R0901534_ASP.Models
+﻿using System.Collections.Generic;
+
+namespace Project_WebApps_R0901534_ASP.Models
 {
     public class AutoKlasse
     {
@@ -15,5 +17,6 @@
 
         public GebruikerAuto GebruikerAuto { get; set; }
         public Klasse Klasse { get; set; }
+        public virtual ICollection<GebruikerAuto> GebruikerAutos { get; set; }
     }
 }

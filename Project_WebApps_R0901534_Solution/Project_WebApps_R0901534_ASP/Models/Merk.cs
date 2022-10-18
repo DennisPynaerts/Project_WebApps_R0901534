@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_WebApps_R0901534_ASP.Models
 {
@@ -12,5 +13,13 @@ namespace Project_WebApps_R0901534_ASP.Models
 
         [Required(ErrorMessage = "Gelieve een naam in te vullen!")]
         public string Naam { get; set; }
+
+        // Navigation Properties
+
+        [Required]
+        public int ModelId { get; set; }
+
+        public Model Model { get; set; }
+        public virtual ICollection<Model> Models { get; set; }
     }
 }
