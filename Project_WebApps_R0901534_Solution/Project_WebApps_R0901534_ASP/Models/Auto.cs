@@ -17,6 +17,8 @@ namespace Project_WebApps_R0901534_ASP.Models
         public enum Aandrijflijn
         { AWD, RWD, FWD }
 
+        public Aandrijflijn Aandrijving { get; set; }
+
         public int Bouwjaar { get; set; }
 
         [Required(ErrorMessage = "Gelieve een totale PI in te vullen!")]
