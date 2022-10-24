@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Project_WebApps_R0901534_ASP.Areas.Identity;
+using System.Collections.Generic;
 
 namespace Project_WebApps_R0901534_ASP.Models
 {
@@ -16,6 +17,6 @@ namespace Project_WebApps_R0901534_ASP.Models
 
         public Auto Auto { get; set; }
         public Gebruiker Gebruiker { get; set; }
-        public virtual ICollection<Auto> Autos { get; set; }
+        public ICollection<Auto> Autos { get; set; }
     }
 }

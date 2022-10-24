@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project_WebApps_R0901534_ASP.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Project_WebApps_R0901534_ASP.Areas.Identity;
 
 namespace Project_WebApps_R0901534_ASP.Data
 {
-    public class ForzaContext : DbContext
+    public class ForzaContext : IdentityDbContext<Gebruiker>
     {
         public ForzaContext(DbContextOptions<ForzaContext> options) : base(options)
         {
@@ -22,6 +25,7 @@ namespace Project_WebApps_R0901534_ASP.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.HasDefaultSchema("Forza");
             modelBuilder.Entity<Gebruiker>().ToTable("Gebruiker");
             modelBuilder.Entity<Auto>().ToTable("Auto");
