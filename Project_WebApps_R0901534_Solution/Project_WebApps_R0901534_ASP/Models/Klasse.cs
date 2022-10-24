@@ -1,4 +1,6 @@
-﻿namespace Project_WebApps_R0901534_ASP.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Project_WebApps_R0901534_ASP.Models
 {
     public class Klasse
     {
@@ -6,7 +8,8 @@
         public int KlasseId { get; set; }
 
         // Attributes
-        public string Naam { get; set; }
+        [Required]
+        public char Naam { get; set; }
 
         public int MinPI { get; set; }
         public int MaxPI { get; set; }

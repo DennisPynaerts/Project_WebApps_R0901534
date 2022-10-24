@@ -8,7 +8,7 @@ namespace Project_WebApps_R0901534_ASP.Models
 
         // Attributes
 
-        [Required(ErrorMessage = "Gelieve een naam in te vullen!")]
+        [Required(ErrorMessage = "Gelieve een naam in te vullen!"), MaxLength(30, ErrorMessage = "Modelnaam mag maar 30 karakters lang zijn!")]
         public string Naam { get; set; }
     }
 }

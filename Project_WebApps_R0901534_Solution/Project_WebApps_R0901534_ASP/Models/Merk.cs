@@ -6,20 +6,21 @@ namespace Project_WebApps_R0901534_ASP.Models
     public class Merk
     {
         // Primary Key
-
         public int MerkId { get; set; }
 
         // Attributes
 
-        [Required(ErrorMessage = "Gelieve een naam in te vullen!")]
+        [Required(ErrorMessage = "Gelieve een naam in te vullen!"), MaxLength(20, ErrorMessage = "Naam mag maar 20 karakters lang zijn!")]
         public string Naam { get; set; }
 
-        // Navigation Properties
+        // Foreign key
 
         [Required]
         public int ModelId { get; set; }
 
+        // Navigation properties
+
         public Model Model { get; set; }
-        public virtual ICollection<Model> Models { get; set; }
+        public virtual ICollection<Model> Modellen { get; set; }
     }
 }

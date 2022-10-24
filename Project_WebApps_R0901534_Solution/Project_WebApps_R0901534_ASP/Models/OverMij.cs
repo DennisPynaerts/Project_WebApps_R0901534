@@ -18,7 +18,10 @@ namespace Project_WebApps_R0901534_ASP.Models
         [Required]
         public string TekstAppInfo { get; set; }
 
+        [Required]
         public string Afbeelding1 { get; set; }
+
+        [Required]
         public string Afbeelding2 { get; set; }
     }
 }
