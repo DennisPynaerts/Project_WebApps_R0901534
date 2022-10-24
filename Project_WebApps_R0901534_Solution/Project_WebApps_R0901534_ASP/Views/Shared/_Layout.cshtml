@@ -19,9 +19,10 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-custom nav-item-bg border-bottom">            
             <div class="container-fluid">
                 <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="text-light">MENU</span>
                 </button>
                 <div class="navbar-collapse collapse" id="navbarCustom">
+                    <partial name="_LoginPartial" />
                     <ul class="navbar-nav">
                         <li class="nav-item mx-5">
                             <a class="nav-link custom-text-color nav-item-bg" asp-controller="Home" asp-action="Index">Home</a>
@@ -51,10 +52,8 @@
     </div>
 
     <footer class="border-top footer text-muted mt-5">
-        <div class="container mb-3">
-            <div class="row">
-                <p class="col-md-6 mb-0 custom-text-color d-flex flex-wrap justify-content-between align-items-start">&copy; 2022, Dennis Pynaerts</p>
-            </div>
+        <div class="container mb-3 col-md-12">
+                <p class="mb-0 custom-text-color d-flex flex-wrap text-center">&copy; 2022, Dennis Pynaerts</p>
         </div>
     </footer>
 
