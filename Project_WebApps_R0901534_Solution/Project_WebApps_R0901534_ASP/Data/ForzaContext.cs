@@ -23,20 +23,9 @@ namespace Project_WebApps_R0901534_ASP.Data
         public DbSet<Model> Models { get; set; }
         public DbSet<OverMij> OverMijs { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.HasDefaultSchema("Forza");
-            modelBuilder.Entity<Gebruiker>().ToTable("Gebruiker");
-            modelBuilder.Entity<Auto>().ToTable("Auto");
-            modelBuilder.Entity<AutoKlasse>().ToTable("AutoKlasse");
-            modelBuilder.Entity<Circuit>().ToTable("Circuit");
-            modelBuilder.Entity<GebruikerAuto>().ToTable("GebruikerAuto");
-            modelBuilder.Entity<Klasse>().ToTable("Klasse");
-            modelBuilder.Entity<Laptime>().ToTable("Laptime");
-            modelBuilder.Entity<Merk>().ToTable("Merk");
-            modelBuilder.Entity<Model>().ToTable("Model");
-            modelBuilder.Entity<OverMij>().ToTable("OverMij");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Forza;Trusted_Connection=True;");
         }
     }
 }

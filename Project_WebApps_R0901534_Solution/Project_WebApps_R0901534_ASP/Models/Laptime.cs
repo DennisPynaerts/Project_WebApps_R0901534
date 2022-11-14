@@ -10,10 +10,7 @@ namespace Project_WebApps_R0901534_ASP.Models
         public int LaptimeId { get; set; }
 
         // Foreign Keys
-        [Required]
         public int AutoKlasseId { get; set; }
-
-        [Required]
         public int CircuitId { get; set; }
 
         // Attributes

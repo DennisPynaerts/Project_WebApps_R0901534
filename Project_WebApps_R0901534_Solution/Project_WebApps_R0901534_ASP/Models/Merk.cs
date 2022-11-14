@@ -14,13 +14,11 @@ namespace Project_WebApps_R0901534_ASP.Models
         public string Naam { get; set; }
 
         // Foreign key
-
-        [Required]
         public int ModelId { get; set; }
 
         // Navigation properties
 
         public Model Model { get; set; }
-        public virtual ICollection<Model> Modellen { get; set; }
+        public virtual ICollection<Auto> Autos { get; set; }
     }
 }

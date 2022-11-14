@@ -17,6 +17,6 @@ namespace Project_WebApps_R0901534_ASP.Models
 
         public Auto Auto { get; set; }
         public Gebruiker Gebruiker { get; set; }
-        public ICollection<Auto> Autos { get; set; }
+        public virtual ICollection<AutoKlasse> AutoKlasses { get; set; }
     }
 }
