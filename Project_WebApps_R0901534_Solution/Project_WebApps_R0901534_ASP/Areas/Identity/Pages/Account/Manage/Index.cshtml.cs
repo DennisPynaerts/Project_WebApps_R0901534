@@ -30,11 +30,12 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            public int GebruikerId { get; set; }
             [Required, Display(Name = "Nickname")]
             public string Nickname { get; set; }
 
-            [Required, Display(Name = "Wachtwoord")]
-            public string Wachtwoord { get; set; }
+            //[Required, Display(Name = "Wachtwoord")]
+            //public string Wachtwoord { get; set; }
 
             [Required, EmailAddress, Display(Name = "E-mailadres")]
             public string Emailadres { get; set; }
@@ -44,13 +45,13 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity.Pages.Account.Manage
         {
             var nickname = await Task.FromResult(user.Nickname);
             var email = await Task.FromResult(user.Emailadres);
-            var wachtwoord = await Task.FromResult(user.Wachtwoord);
+            // var wachtwoord = await Task.FromResult(user.Wachtwoord);
 
             Input = new InputModel
             {
                 Nickname = nickname,
-                Emailadres = email,
-                Wachtwoord = wachtwoord
+                Emailadres = email
+                // Wachtwoord = wachtwoord
             };
         }
 
@@ -80,10 +81,10 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var nickname = await _userManager.GetPhoneNumberAsync(user);
+            var nickname = await _userManager.GetUserNameAsync(user);
             if (Input.Emailadres != nickname)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.Nickname);
+                var setPhoneResult = await _userManager.SetUserNameAsync(user, Input.Nickname);
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Er is iets fout gegaan bij het verwerken van de nickname.";
@@ -91,21 +92,21 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            var wachtwoord = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.Emailadres != wachtwoord)
-            {
-                var setPassordResult = await _userManager.SetPhoneNumberAsync(user, Input.Wachtwoord);
-                if (!setPassordResult.Succeeded)
-                {
-                    StatusMessage = "Er is iets fout gegaan bij het verwerken van het wachtwoord.";
-                    return RedirectToPage();
-                }
-            }
+            //var wachtwoord = await _userManager.GetPhoneNumberAsync(user);
+            //if (Input.Emailadres != wachtwoord)
+            //{
+            //    var setPassordResult = await _userManager.SetPhoneNumberAsync(user, Input.Wachtwoord);
+            //    if (!setPassordResult.Succeeded)
+            //    {
+            //        StatusMessage = "Er is iets fout gegaan bij het verwerken van het wachtwoord.";
+            //        return RedirectToPage();
+            //    }
+            //}
 
-            var emailadres = await _userManager.GetPhoneNumberAsync(user);
+            var emailadres = await _userManager.GetEmailAsync(user);
             if (Input.Emailadres != emailadres)
             {
-                var setEmailAddressResult = await _userManager.SetPhoneNumberAsync(user, Input.Emailadres);
+                var setEmailAddressResult = await _userManager.SetEmailAsync(user, Input.Emailadres);
                 if (!setEmailAddressResult.Succeeded)
                 {
                     StatusMessage = "Er is iets fout gegaan bij het verwerken van het e-mailadres.";
