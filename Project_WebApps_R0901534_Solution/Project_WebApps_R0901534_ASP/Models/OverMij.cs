@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Project_WebApps_R0901534_ASP.Areas.Identity;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_WebApps_R0901534_ASP.Models
 {
@@ -23,5 +26,6 @@ namespace Project_WebApps_R0901534_ASP.Models
 
         [Required]
         public string Afbeelding2 { get; set; }
+        public virtual ICollection<Gebruiker> Gebruikers { get; set; }
     }
 }
