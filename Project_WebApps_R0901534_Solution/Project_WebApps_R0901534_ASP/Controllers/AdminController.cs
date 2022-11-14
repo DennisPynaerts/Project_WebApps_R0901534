@@ -37,7 +37,7 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 {
                     Nickname = viewModel.Nickname,
                     Emailadres = viewModel.Emailadres,
-                    Wachtwoord = viewModel.Wachtwoord
+                    // Wachtwoord = viewModel.Wachtwoord
                 };
 
                 IdentityResult res = await _userManager.CreateAsync(gebruiker, viewModel.Wachtwoord);

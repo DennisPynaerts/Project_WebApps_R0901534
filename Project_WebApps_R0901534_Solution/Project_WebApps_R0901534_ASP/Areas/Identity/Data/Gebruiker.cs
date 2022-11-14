@@ -2,13 +2,14 @@
 using Project_WebApps_R0901534_ASP.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_WebApps_R0901534_ASP.Areas.Identity
 {
     public class Gebruiker : IdentityUser
     {
         // Primary Key
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GebruikerId { get; set; }
 
         // Attributes
@@ -23,11 +24,11 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity
 
         public bool IsAdmin { get; set; }
 
-        [Required(ErrorMessage = "Gelieve een wachtwoord in te vullen!"), PersonalData, DataType(DataType.Password)]
-        public string Wachtwoord { get; set; }
+        //[Required(ErrorMessage = "Gelieve een wachtwoord in te vullen!"), PersonalData, DataType(DataType.Password)]
+        //public string Wachtwoord { get; set; }
 
         // Foreign Keys
-        public int OverMijId { get; set; }
+        public int? OverMijId { get; set; }
 
         // Navigation Properties
 
