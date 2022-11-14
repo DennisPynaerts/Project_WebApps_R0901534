@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_WebApps_R0901534_ASP.Models
 {
@@ -13,5 +14,7 @@ namespace Project_WebApps_R0901534_ASP.Models
 
         public int MinPI { get; set; }
         public int MaxPI { get; set; }
+
+        public virtual ICollection<AutoKlasse> AutoKlasses { get; set; }
     }
 }

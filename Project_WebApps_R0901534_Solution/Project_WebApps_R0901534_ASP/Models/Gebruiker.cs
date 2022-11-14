@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_WebApps_R0901534_ASP.Models
@@ -28,5 +29,6 @@ namespace Project_WebApps_R0901534_ASP.Models
         // Navigation Properties
 
         public OverMij OverMij { get; set; }
+        public virtual ICollection<GebruikerAuto> GebruikerAutos { get; set; }
     }
 }

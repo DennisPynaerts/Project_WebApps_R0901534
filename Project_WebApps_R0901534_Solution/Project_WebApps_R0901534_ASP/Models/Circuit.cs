@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_WebApps_R0901534_ASP.Models
 {
@@ -14,5 +15,6 @@ namespace Project_WebApps_R0901534_ASP.Models
 
         [Required(ErrorMessage = "Gelieve een afbeelding op te laden!")]
         public string Afbeelding { get; set; }
+        public virtual ICollection<Laptime> Laptimes { get; set; }
     }
 }
