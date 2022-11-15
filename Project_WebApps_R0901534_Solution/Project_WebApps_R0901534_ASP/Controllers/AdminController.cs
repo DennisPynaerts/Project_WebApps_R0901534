@@ -33,14 +33,9 @@ namespace Project_WebApps_R0901534_ASP.Controllers
         {
             if (ModelState.IsValid)
             {
-                Gebruiker gebruiker = new Gebruiker()
-                {
-                    Nickname = viewModel.Nickname,
-                    Emailadres = viewModel.Emailadres,
-                    // Wachtwoord = viewModel.Wachtwoord
-                };
+                Gebruiker gebruiker = new Gebruiker()  { };
 
-                IdentityResult res = await _userManager.CreateAsync(gebruiker, viewModel.Wachtwoord);
+                IdentityResult res = await _userManager.CreateAsync(gebruiker);
                 if (res.Succeeded) return RedirectToAction("Index");
                 else
                 {
@@ -56,12 +51,7 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             Gebruiker gebruiker = _userManager.Users.Where(g => g.Id == id).FirstOrDefault();
             if (gebruiker != null)
             {
-                GebruikerDetailsViewModel viewModel = new GebruikerDetailsViewModel()
-                {
-                    GebruikerId = gebruiker.GebruikerId,
-                    Nickname = gebruiker.Nickname,
-                    Emailadres = gebruiker.Emailadres
-                };
+                GebruikerDetailsViewModel viewModel = new GebruikerDetailsViewModel() { };
                 return View(viewModel);
             }
             else

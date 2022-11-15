@@ -43,8 +43,8 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity.Pages.Account.Manage
 
         private async Task LoadAsync(Gebruiker user)
         {
-            var nickname = await Task.FromResult(user.Nickname);
-            var email = await Task.FromResult(user.Emailadres);
+            var nickname = await Task.FromResult(user.UserName);
+            var email = await Task.FromResult(user.Email);
             // var wachtwoord = await Task.FromResult(user.Wachtwoord);
 
             Input = new InputModel

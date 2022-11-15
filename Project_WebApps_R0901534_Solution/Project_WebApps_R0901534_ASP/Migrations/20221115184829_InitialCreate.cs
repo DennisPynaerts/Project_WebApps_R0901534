@@ -172,6 +172,7 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: true),
                     AccesFailedCount = table.Column<int>(nullable: true),
+                    Wachtwoord = table.Column<string>(nullable: false),
                     OverMijId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

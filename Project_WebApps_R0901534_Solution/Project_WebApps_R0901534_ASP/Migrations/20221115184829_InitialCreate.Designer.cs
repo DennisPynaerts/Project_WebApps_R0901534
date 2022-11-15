@@ -10,7 +10,7 @@ using Project_WebApps_R0901534_ASP.Data;
 namespace Project_WebApps_R0901534_ASP.Migrations
 {
     [DbContext(typeof(ForzaContext))]
-    [Migration("20221115180635_InitialCreate")]
+    [Migration("20221115184829_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -230,6 +230,10 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
+
+                    b.Property<string>("Wachtwoord")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
