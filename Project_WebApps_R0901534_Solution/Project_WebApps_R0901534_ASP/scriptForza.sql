@@ -85,9 +85,9 @@ insert into OverMijs(OverMijId, titelPersInfo, tekstPersInfo, titelAppInfo, teks
 set identity_insert OverMijs off;
 set identity_insert AspNetusers on;
 
-insert into AspNetUsers(Id, GebruikerId, nickname, emailadres, isAdmin, overMijId) values ('1', 1, 'LeRacer', 'r0901534@student.thomasmore.be', 1, 1);
-insert into AspNetUsers(Id, GebruikerId, nickname, emailadres, isAdmin) values ('2', 2, 'Player One', 'player_one@student.thomasmore.be', 0);
-insert into AspNetUsers(Id, GebruikerId, nickname, emailadres, isAdmin) values ('3', 3, 'New Player', 'new_player@student.thomasmore.be', 0);
+insert into AspNetUsers(Id, GebruikerId, nickname, emailadres, isAdmin, overMijId, AccessFailedCount) values ('1', 1, 'LeRacer', 'r0901534@student.thomasmore.be', 1, 1, 0);
+insert into AspNetUsers(Id, GebruikerId, nickname, emailadres, isAdmin, AccessFailedCount) values ('2', 2, 'Player One', 'player_one@student.thomasmore.be', 0, 0);
+insert into AspNetUsers(Id, GebruikerId, nickname, emailadres, isAdmin, AccessFailedCount) values ('3', 3, 'New Player', 'new_player@student.thomasmore.be', 0, 0);
 
 set identity_insert Forza.dbo.AspNetusers off;
 set identity_insert Forza.dbo.GebruikerAutos on;
