@@ -23,6 +23,11 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity
         public string Emailadres { get; set; }
 
         public bool IsAdmin { get; set; }
+        public bool? EmailConfirmed { get; set; }
+        public bool? PhoneNumberConfirmed { get; set; }
+        public bool? TwoFactorEnabled { get; set; }
+        public bool? LockoutEnabled { get; set; }
+        public int? AccesFailedCount { get; set; }
 
         //[Required(ErrorMessage = "Gelieve een wachtwoord in te vullen!"), PersonalData, DataType(DataType.Password)]
         //public string Wachtwoord { get; set; }
