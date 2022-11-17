@@ -13,16 +13,18 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-sm-12">
-            <table>                
-                <tbody @foreach (var gebruiker in Model.Gebruikers) {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => gebruiker.Id)</td>
-                        <td>@Html.DisplayFor(modelItem => gebruiker.UserName)</td>
-                        <td><button class="btn btn-warning"><a asp-action="DetailsGebruiker">Details</a></button></td>
-                        <td><button class="btn btn-warning"><a asp-action="VerwijderGebruiker">Verwijder</a></button></td>
-                     </tr>
-                }
-                />
+            <table>
+                <tbody>
+                    @foreach (var gebruiker in Model.Gebruikers)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => gebruiker.Id)</td>
+                            <td>@Html.DisplayFor(modelItem => gebruiker.UserName)</td>
+                            <td><button class="btn btn-warning"><a asp-action="DetailsGebruiker">Details</a></button></td>
+                            <td><button class="btn btn-warning"><a asp-action="VerwijderGebruiker">Verwijder</a></button></td>
+                        </tr>
+                    }
+                    />
                 </tbody>
             </table>
         </div>

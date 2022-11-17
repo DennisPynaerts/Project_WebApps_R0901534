@@ -33,7 +33,7 @@ namespace Project_WebApps_R0901534_ASP.Controllers
         {
             if (ModelState.IsValid)
             {
-                Gebruiker gebruiker = new Gebruiker()  { };
+                Gebruiker gebruiker = new Gebruiker() { };
 
                 IdentityResult res = await _userManager.CreateAsync(gebruiker);
                 if (res.Succeeded) return RedirectToAction("Index");
