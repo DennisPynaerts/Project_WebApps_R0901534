@@ -2,8 +2,5 @@
 {
     public class GebruikerDetailsViewModel
     {
-        public int GebruikerId { get; set; }
-        public string Nickname { get; set; }
-        public string Emailadres { get; set; }
     }
 }
