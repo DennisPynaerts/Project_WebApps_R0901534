@@ -1,0 +1,97 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Leaderboard - ";
+}
+
+<h1 class="text-center mt-5 mb-5 me-1">COTA</h1>
+
+<div class="table-responsive">
+    <table class="table bg-warning table-striped">
+        <thead>
+            <tr>
+                <th class="text-sm-left text-light">POS</th>
+                <th class="text-sm-left text-light">Klasse</th>
+                <th class="text-sm-left text-light">Auto</th>
+                <th class="text-sm-left text-light">Rondetijd</th>
+                <th class="text-sm-left text-light">Handling</th>
+                <th class="text-sm-left text-light">Datum</th>
+                <th class="text-sm-left text-light">Nickname</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>S800</td>
+                <td>Lamborghini Reventon</td>
+                <td>01.30.568</td>
+                <td>6.5H</td>
+                <td>19-11-2022</td>
+                <td>LeRacer</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>S800</td>
+                <td>Lamborghini Diablo</td>
+                <td>01.30.864</td>
+                <td>6.2H</td>
+                <td>18-11-2022</td>
+                <td>LeRacer</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>S800</td>
+                <td>Ford GT</td>
+                <td>01.30.931</td>
+                <td>6.4H</td>
+                <td>17-11-2022</td>
+                <td>LeRacer</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1 class="text-center mt-5 mb-5 me-1">Rondetijd toevoegen</h1>
+
+    <div class="container-fluid bg-warning p-2 m-5 justify-content-left">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 mt-1">
+                <label class="text-light">Auto's: </label>
+                <select>
+                    <option>Ford GT 6.4H</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-12 mt-1">
+                <input type="text" placeholder="Rondetijd {00.00.000}" />
+            </div>
+            <div class="col-md-4 col-sm-12 mt-1">
+                <button class="btn-dark">Voeg rondetijd toe</button>
+            </div>
+        </div>
+        <h3 class="text-dark text-center mt-1 mb-2">Voeg nieuwe auto toe + rondetijd toe</h3>
+        <div class="row mt-2">
+            <div class="col-md-4 col-sm-12 mt-1">
+                <input type="text" placeholder="Merk" />
+            </div>
+            <div class="col-md-4 col-sm-12 mt-1">
+                <input type="text" placeholder="Model" />
+            </div>
+            <div class="col-md-4 col-sm-12 mt-1">
+                <input type="text" placeholder="Handling" />
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 col-sm-12 mt-1">
+                <input type="text" placeholder="PI" />
+            </div>
+            <div class="col-md-4 col-sm-12 mt-1">
+                <input type="text" placeholder="Rondetijd {00.00.000}" />
+            </div>
+            <div class="col-md-4 col-sm-12 mt-1">
+                <button class="btn-dark">Voeg rondetijd toe</button>
+            </div>
+        </div>
+    </div>
+</div>
