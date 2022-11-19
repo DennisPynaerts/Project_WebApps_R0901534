@@ -8,5 +8,9 @@ namespace Project_WebApps_R0901534_ASP.Controllers
         {
             return View();
         }
+        public IActionResult Detail()
+        {
+            return View();
+        }
     }
 }
