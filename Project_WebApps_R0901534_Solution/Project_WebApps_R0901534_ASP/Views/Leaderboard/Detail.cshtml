@@ -7,8 +7,8 @@
 
 <h1 class="text-center mt-5 mb-5 me-1">COTA</h1>
 
-<div class="table-responsive">
-    <table class="table bg-warning table-striped">
+<div class="table-responsive rounded">
+    <table class="table bg-warning table-striped border border-light">
         <thead>
             <tr>
                 <th class="text-sm-left text-light">POS</th>
@@ -50,48 +50,58 @@
             </tr>
         </tbody>
     </table>
+</div>
 
-    <h1 class="text-center mt-5 mb-5 me-1">Rondetijd toevoegen</h1>
+    <h1 class="text-center mt-5 mb-5">Rondetijd toevoegen</h1>
 
-    <div class="container-fluid bg-warning p-2 m-5 justify-content-left">
+    
+    <div class="container-fluid bg-warning p-5 mb-3 border border-light rounded">
+        <fieldset>
+            <legend class="text-center mb-5">Rondetijd registreren</legend>
         <div class="row">
-            <div class="col-md-4 col-sm-12 mt-1">
-                <label class="text-light">Auto's: </label>
-                <select>
+            <div class="col-md-6 col-sm-12">
+                <select class="p-1">
+                    <option>Auto's</option>
                     <option>Ford GT 6.4H</option>
                     <option>Option 2</option>
                     <option>Option 3</option>
                 </select>
             </div>
-            <div class="col-md-4 col-sm-12 mt-1">
-                <input type="text" placeholder="Rondetijd {00.00.000}" />
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="mt-1" placeholder="Rondetijd {00.00.000}" />
             </div>
-            <div class="col-md-4 col-sm-12 mt-1">
-                <button class="btn-dark">Voeg rondetijd toe</button>
-            </div>
-        </div>
-        <h3 class="text-dark text-center mt-1 mb-2">Voeg nieuwe auto toe + rondetijd toe</h3>
-        <div class="row mt-2">
-            <div class="col-md-4 col-sm-12 mt-1">
-                <input type="text" placeholder="Merk" />
-            </div>
-            <div class="col-md-4 col-sm-12 mt-1">
-                <input type="text" placeholder="Model" />
-            </div>
-            <div class="col-md-4 col-sm-12 mt-1">
-                <input type="text" placeholder="Handling" />
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-md-4 col-sm-12 mt-1">
-                <input type="text" placeholder="PI" />
-            </div>
-            <div class="col-md-4 col-sm-12 mt-1">
-                <input type="text" placeholder="Rondetijd {00.00.000}" />
-            </div>
-            <div class="col-md-4 col-sm-12 mt-1">
-                <button class="btn-dark">Voeg rondetijd toe</button>
-            </div>
-        </div>
+        </div>        
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-3">
+        <button class="btn-dark border border-light rounded py-1 px-2">Voeg rondetijd toe</button>
     </div>
-</div>
+    </fieldset>
+    <fieldset class="mt-4">
+        <legend class="text-center mb-5">Voeg auto + rondetijd toe</legend>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="mt-1" placeholder="Merk" />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="mt-1" placeholder="Model" />
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="mt-1" placeholder="Handling" />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="mt-1" placeholder="PI" />
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="mt-1" placeholder="Rondetijd {00.00.000}" />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <button class="btn-dark border border-light rounded py-1 px-2">Voeg rondetijd toe</button>
+            </div>
+        </div>
+    </fieldset>
+    </div>
+
+    

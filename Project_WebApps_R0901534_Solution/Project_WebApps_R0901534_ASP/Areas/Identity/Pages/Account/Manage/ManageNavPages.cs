@@ -23,6 +23,8 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity.Pages.Account.Manage
         public static string PersonalData => "PersonalData";
 
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
+        public static string LogOut => "LogOut";
+        public static string LogOutClass(ViewContext viewContext) => PageNavClass(viewContext, LogOut);
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
