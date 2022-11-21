@@ -38,26 +38,28 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-    font-size: 20px;
     font-family: Verdana;
     width: 100%;
     margin-right: 0px;
 }
 
 body {
-    font-size: 20px;
     font-family: Verdana;
 }
 
 main {
-    font-size: 20px;
     font-family: Verdana;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
     html {
         font-size: 16px;
     }
+}*/
+
+p {
+    font-family: Verdana;
+    font-size: 16px;
 }
 
 .border-top {
