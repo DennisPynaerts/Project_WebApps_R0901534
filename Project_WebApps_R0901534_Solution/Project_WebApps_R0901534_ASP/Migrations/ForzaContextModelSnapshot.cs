@@ -157,10 +157,8 @@ namespace Project_WebApps_R0901534_ASP.Migrations
             modelBuilder.Entity("Project_WebApps_R0901534_ASP.Areas.Identity.Gebruiker", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("AccesFailedCount")
-                        .HasColumnType("int");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -173,13 +171,11 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<bool?>("EmailConfirmed")
+                    b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("Emailadres")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GebruikerId")
                         .ValueGeneratedOnAdd()
@@ -189,14 +185,13 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("LockoutEnabled")
+                    b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Nickname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
@@ -216,13 +211,13 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("PhoneNumberConfirmed")
+                    b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("TwoFactorEnabled")
+                    b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
@@ -230,7 +225,6 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                         .HasMaxLength(256);
 
                     b.Property<string>("Wachtwoord")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -340,6 +334,7 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GebruikerId1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("GebruikerAutoId");
@@ -572,7 +567,9 @@ namespace Project_WebApps_R0901534_ASP.Migrations
 
                     b.HasOne("Project_WebApps_R0901534_ASP.Areas.Identity.Gebruiker", "Gebruiker")
                         .WithMany("GebruikerAutos")
-                        .HasForeignKey("GebruikerId1");
+                        .HasForeignKey("GebruikerId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Project_WebApps_R0901534_ASP.Models.Laptime", b =>

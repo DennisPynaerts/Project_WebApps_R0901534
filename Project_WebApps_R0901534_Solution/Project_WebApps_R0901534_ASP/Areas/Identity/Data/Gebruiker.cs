@@ -9,6 +9,10 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity
 {
     public class Gebruiker : IdentityUser
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
+        public int GebruikerId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public override string Id { get; set; }
         public string Nickname { get; set; }
         public string Emailadres { get; set; }
         public string Wachtwoord { get; set; }

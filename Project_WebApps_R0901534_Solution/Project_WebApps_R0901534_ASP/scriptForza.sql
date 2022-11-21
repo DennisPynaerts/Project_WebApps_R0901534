@@ -83,13 +83,13 @@ set identity_insert OverMijs on;
 insert into OverMijs(OverMijId, titelPersInfo, tekstPersInfo, titelAppInfo, tekstAppInfo, afbeelding1, afbeelding2) values (1, 'Dennis Pynaerts', 'Hey, ik ben Dennis Pynaerts, welkom op mijn website! Deze website heb ik gemaakt als student bij de hogeschool Thomas More te Turnhout waar ik een opleiding graduaat Programmeren volg. Ik ben 33 jaar oud, woonachtig te Ravels en ik heb Forza Motorsport als onderwerp gekozen omdat ik Forza al meer dan 15 jaar speel, ik denk dat ik mezelf gerust een veteraan mag noemen. Hieronder volgt een beetje meer uitleg over de website.', 'Forza Motorsport 7', 'Forza Motorsport 7 is een racing game met karakteristieken van een simulatie racer met een goede blend van arcade. Een van de vele kenmerken van dit spel is dat het je in staat stelt om zelf auto''s samen te stellen en daarna af te stellen naar het circuit van je voorkeur. Of je stelt ze af om allround te gebruiken als je verkiest om voornamelijk online in publieke lobbies te racen. Het spel zelf is ondertussen al meer dan 5 jaar oud en volgend jaar komt de opvolger uit met hopelijk nog meer auto''s om te bouwen en circuits op te racen. Als je naar de leaderboard pagina gaat, kan je browsen door de rondetijden van onze gebruikers en als je zelf een account hebt, zelf een rondetijd registreren. Enjoy! ', 'C:\TM\2\Webapplicaties\Project\images\R34RioStoplight.jpg', 'C:\TM\2\Webapplicaties\Project\images\R34WetNurbGP.jpg');
 
 set identity_insert OverMijs off;
-set identity_insert AspNetusers on;
+--set identity_insert AspNetusers on;
 
-insert into AspNetUsers(Id, GebruikerId, nickname, emailadres, isAdmin, overMijId, AccessFailedCount) values ('1', 1, 'LeRacer', 'r0901534@student.thomasmore.be', 1, 1, 0);
-insert into AspNetUsers(Id, GebruikerId, nickname, emailadres, isAdmin, AccessFailedCount) values ('2', 2, 'Player One', 'player_one@student.thomasmore.be', 0, 0);
-insert into AspNetUsers(Id, GebruikerId, nickname, emailadres, isAdmin, AccessFailedCount) values ('3', 3, 'New Player', 'new_player@student.thomasmore.be', 0, 0);
+--insert into AspNetUsers(Id, nickname, emailadres, isAdmin, overMijId, AccessFailedCount, wachtwoord, PasswordHash) values ('1', 'LeRacer', 'r0901534@student.thomasmore.be', 1, 1, 0, '!Abc123', 'AQAAAAEAACcQAAAAELMzgLsR1gvKxNdrriPX1V1XRlovfDT6DLpjdRP431/qScAMlWVyfqriB60e7OePxw==');
+--insert into AspNetUsers(Id, nickname, emailadres, isAdmin, AccessFailedCount, wachtwoord, PasswordHash) values ('2', 'Player One', 'player_one@student.thomasmore.be', 0, 0, '!Abc123', 'AQAAAAEAACcQAAAAELMzgLsR1gvKxNdrriPX1V1XRlovfDT6DLpjdRP431/qScAMlWVyfqriB60e7OePxw==');
+--insert into AspNetUsers(Id, nickname, emailadres, isAdmin, AccessFailedCount, wachtwoord, PasswordHash) values ('3', 'New Player', 'new_player@student.thomasmore.be', 0, 0, '!Abc123', 'AQAAAAEAACcQAAAAELMzgLsR1gvKxNdrriPX1V1XRlovfDT6DLpjdRP431/qScAMlWVyfqriB60e7OePxw==');
 
-set identity_insert Forza.dbo.AspNetusers off;
+--set identity_insert Forza.dbo.AspNetusers off;
 set identity_insert Forza.dbo.GebruikerAutos on;
 
 insert into GebruikerAutos(GebruikerAutoId, autoId, gebruikerId) values (1, 1, 1);
