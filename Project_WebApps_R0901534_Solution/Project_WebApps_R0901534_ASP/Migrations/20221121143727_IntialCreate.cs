@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Project_WebApps_R0901534_ASP.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class IntialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -156,23 +156,22 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     GebruikerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nickname = table.Column<string>(nullable: false),
-                    Emailadres = table.Column<string>(maxLength: 40, nullable: false),
+                    Nickname = table.Column<string>(nullable: true),
+                    Emailadres = table.Column<string>(nullable: true),
+                    Wachtwoord = table.Column<string>(nullable: true),
                     IsAdmin = table.Column<bool>(nullable: false),
-                    EmailConfirmed = table.Column<bool>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: true),
-                    TwoFactorEnabled = table.Column<bool>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: true),
-                    AccesFailedCount = table.Column<int>(nullable: true),
-                    Wachtwoord = table.Column<string>(nullable: false),
                     OverMijId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -279,7 +278,7 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AutoId = table.Column<int>(nullable: false),
                     GebruikerId = table.Column<int>(nullable: false),
-                    GebruikerId1 = table.Column<string>(nullable: true)
+                    GebruikerId1 = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -295,7 +294,7 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                         column: x => x.GebruikerId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
