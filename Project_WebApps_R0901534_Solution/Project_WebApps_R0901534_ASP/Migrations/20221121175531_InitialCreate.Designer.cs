@@ -10,8 +10,8 @@ using Project_WebApps_R0901534_ASP.Data;
 namespace Project_WebApps_R0901534_ASP.Migrations
 {
     [DbContext(typeof(ForzaContext))]
-    [Migration("20221121143727_IntialCreate")]
-    partial class IntialCreate
+    [Migration("20221121175531_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -159,7 +159,6 @@ namespace Project_WebApps_R0901534_ASP.Migrations
             modelBuilder.Entity("Project_WebApps_R0901534_ASP.Areas.Identity.Gebruiker", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -178,11 +177,6 @@ namespace Project_WebApps_R0901534_ASP.Migrations
 
                     b.Property<string>("Emailadres")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GebruikerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
@@ -332,18 +326,14 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     b.Property<int>("AutoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GebruikerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("GebruikerId1")
-                        .IsRequired()
+                    b.Property<string>("GebruikerId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("GebruikerAutoId");
 
                     b.HasIndex("AutoId");
 
-                    b.HasIndex("GebruikerId1");
+                    b.HasIndex("GebruikerId");
 
                     b.ToTable("GebruikerAutos");
                 });
@@ -569,9 +559,7 @@ namespace Project_WebApps_R0901534_ASP.Migrations
 
                     b.HasOne("Project_WebApps_R0901534_ASP.Areas.Identity.Gebruiker", "Gebruiker")
                         .WithMany("GebruikerAutos")
-                        .HasForeignKey("GebruikerId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GebruikerId");
                 });
 
             modelBuilder.Entity("Project_WebApps_R0901534_ASP.Models.Laptime", b =>
