@@ -1,25 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Project_WebApps_R0901534_ASP.ViewModels.UpdateOverMijViewModel
 @{
     ViewData["Title"] = "Admin - ";
 }
 
 <div class="container-fluid bg-warning mb-5 pb-3 pt-3">
-    <form>
-        <label class="control-label text-light mt-1">Pas titel 1 aan</label>
-        <input class="form-control mt-1"  placeholder="Titel 1" />
-        <label class="control-label text-light mt-1">Pas tekst 1 aan</label>
-        <input class="form-control mt-1" placeholder="Tekst 1" />
-        <label class="control-label text-light mt-1">Pas afbeelding(?) 1 aan</label><br />
-        <input type="file" class="mt-1" name="img_1"><br/><hr />
-        <label class="control-label text-light mt-1">Pas titel 2 aan</label>
-        <input class="form-control mt-1" placeholder="Titel 2" />
-        <label class="control-label text-light mt-1">Pas tekst 2 aan</label>
-        <input class="form-control mt-1" placeholder="Tekst 2" />
-        <label class="control-label text-light mt-1">Pas afbeelding(?) 2 aan</label><br />
-        <input type="file" class="mt-1" name="img_2"><br />
-        <button class="btn btn-warning mx-auto mt-4 border border-light rounded text-light">Opslaan</button>
+    <form asp-action="UpdateOverMij">
+        <input type="hidden" asp-for="OverMijId"/>
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+            <div class="form-group">
+                <label asp-for="TitelAppInfo" class="control-label">@Html.DisplayNameFor(model => this.Model.TitelAppInfo)</label>
+                <input asp-for="TitelAppInfo" class="form-control" />
+                <span asp-validation-for="TitelAppInfo" class="text-danger"></span>
+            </div>
+            <label class="control-label text-light mt-1">Pas titel 1 aan</label>
+            <input class="form-control mt-1" placeholder="Titel 1" />
+            <label class="control-label text-light mt-1">Pas tekst 1 aan</label>
+            <input class="form-control mt-1" placeholder="Tekst 1" />
+            <label class="control-label text-light mt-1">Pas afbeelding(?) 1 aan</label><br />
+            <input type="file" class="mt-1" name="img_1"><br /><hr />
+            <label class="control-label text-light mt-1">Pas titel 2 aan</label>
+            <input class="form-control mt-1" placeholder="Titel 2" />
+            <label class="control-label text-light mt-1">Pas tekst 2 aan</label>
+            <input class="form-control mt-1" placeholder="Tekst 2" />
+            <label class="control-label text-light mt-1">Pas afbeelding(?) 2 aan</label><br />
+            <input type="file" class="mt-1" name="img_2"><br />
+            <button class="btn btn-warning mx-auto mt-4 border border-light rounded text-light">Opslaan</button>
+        </div>
     </form>
 
 </div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
