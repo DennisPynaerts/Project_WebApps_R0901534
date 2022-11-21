@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Project_WebApps_R0901534_ASP.ViewModels.OverMijDetailViewModel
 @{
     ViewData["Title"] = "Over mij - ";
 }
@@ -9,28 +7,24 @@
 
 <div class="mt-5 mb-5">
     <div class="row mb-2">
-        <div class="col-md-6 col-sm-12 mb-2">
-            <img src="~/images/FF profile pic.jpg" class="img-fluid" width="50%" alt="logo" />
+        <div class="col-md-6 col-sm-12 d-flex align-items-start justify-content-start">
+            <img src="~/images/FF profile pic.jpg" class="img-fluid" width="60%" alt="logo" />
         </div>
         <div class="col-md-6 col-sm-12">
-            <p class="text-light">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <h2 class="text-warning mb-3"><u>@Model.TitelPersInfo</u></h2>
+            <p class="text-light fs-1">
+                @Model.TekstPersInfo
             </p>
         </div>
-    </div>
+    </div><hr class="bg-light"/>
     <div class="row">
         <div class="col-md-6 col-sm-12">
+            <h2 class="text-warning"><u>@Model.TitelAppInfo</u></h2>
             <p class="text-light">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                @Model.TekstAppInfo
             </p>
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
             <img src="~/images/R34RioStoplight.jpg" class="img-fluid" alt="pic Nissan 2002 R34 GT-R Spec V" />
         </div>
     </div>
