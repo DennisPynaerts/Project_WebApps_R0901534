@@ -78,9 +78,9 @@ namespace Project_WebApps_R0901534_ASP.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Gebruiker { UserName = Input.Nickname, Nickname = Input.Nickname, Emailadres = Input.Email, Wachtwoord = Input.Password, IsAdmin = false  };
+                var user = new Gebruiker { UserName = Input.Nickname, Nickname = Input.Nickname, Emailadres = Input.Email, Wachtwoord = Input.Password, IsAdmin = false, PasswordHash = Input.Password  };
                 System.Diagnostics.Debug.WriteLine(user);
-                var result = await _userManager.CreateAsync((Gebruiker)user);
+                var result = await _userManager.CreateAsync((Gebruiker)user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
