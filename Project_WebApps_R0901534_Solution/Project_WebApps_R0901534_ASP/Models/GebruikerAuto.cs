@@ -1,5 +1,6 @@
 ﻿using Project_WebApps_R0901534_ASP.Areas.Identity;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_WebApps_R0901534_ASP.Models
 {
@@ -11,7 +12,8 @@ namespace Project_WebApps_R0901534_ASP.Models
         // Foreign Keys
 
         public int AutoId { get; set; }
-        public int GebruikerId { get; set; }
+        [ForeignKey("Gebruiker")]
+        public string GebruikerId { get; set; }
 
         // Navigation Properties
 

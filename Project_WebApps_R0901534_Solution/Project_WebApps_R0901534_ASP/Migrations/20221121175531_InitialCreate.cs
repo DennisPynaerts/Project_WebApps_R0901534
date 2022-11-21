@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Project_WebApps_R0901534_ASP.Migrations
 {
-    public partial class IntialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -166,8 +166,6 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    GebruikerId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Nickname = table.Column<string>(nullable: true),
                     Emailadres = table.Column<string>(nullable: true),
                     Wachtwoord = table.Column<string>(nullable: true),
@@ -277,8 +275,7 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     GebruikerAutoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AutoId = table.Column<int>(nullable: false),
-                    GebruikerId = table.Column<int>(nullable: false),
-                    GebruikerId1 = table.Column<string>(nullable: false)
+                    GebruikerId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -290,11 +287,11 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                         principalColumn: "AutoId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GebruikerAutos_AspNetUsers_GebruikerId1",
-                        column: x => x.GebruikerId1,
+                        name: "FK_GebruikerAutos_AspNetUsers_GebruikerId",
+                        column: x => x.GebruikerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -416,9 +413,9 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                 column: "AutoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GebruikerAutos_GebruikerId1",
+                name: "IX_GebruikerAutos_GebruikerId",
                 table: "GebruikerAutos",
-                column: "GebruikerId1");
+                column: "GebruikerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Laptimes_AutoKlasseId",
