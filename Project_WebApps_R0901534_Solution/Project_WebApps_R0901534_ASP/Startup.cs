@@ -33,7 +33,7 @@ namespace Project_WebApps_R0901534_ASP
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -50,7 +50,6 @@ namespace Project_WebApps_R0901534_ASP
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -61,6 +60,24 @@ namespace Project_WebApps_R0901534_ASP
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            CreateRoles(serviceProvider).Wait();
+        }
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            ForzaContext context = serviceProvider.GetRequiredService<ForzaContext>();
+
+            IdentityResult result;
+
+            bool rolecheck = await roleManager.RoleExistsAsync("user");
+            if (!rolecheck)
+                result = await roleManager.CreateAsync(new IdentityRole("user"));
+
+            rolecheck = await roleManager.RoleExistsAsync("admin");
+            if (!rolecheck)
+                result = await roleManager.CreateAsync(new IdentityRole("admin"));
+
+            context.SaveChanges();
         }
     }
 }
