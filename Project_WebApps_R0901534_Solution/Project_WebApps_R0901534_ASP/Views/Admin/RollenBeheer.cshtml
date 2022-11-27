@@ -1,0 +1,20 @@
+﻿@model Project_WebApps_R0901534_ASP.ViewModels.RollenBeheerViewModel
+
+@{
+    ViewData["Title"] = "Rollen";
+}
+
+<form asp-action="RollenBeheer" asp-method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label class="control-label text-light mt-1">Gebruikers</label><br/>
+        <select asp-for="Id" asp-items="Model.Gebruikers"></select>
+    </div>
+    <div class="form-group">
+        <label class="control-label text-light mt-1">Rollen</label><br/>
+        <select asp-for="RolId" asp-items="Model.Rollen"></select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-warning mx-auto mt-2 border border-light rounded text-light" />
+    </div>
+</form>

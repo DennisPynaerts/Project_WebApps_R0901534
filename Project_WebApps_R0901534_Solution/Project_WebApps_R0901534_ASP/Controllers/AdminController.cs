@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Project_WebApps_R0901534_ASP.Data;
 using Project_WebApps_R0901534_ASP.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Project_WebApps_R0901534_ASP.Controllers
 {
@@ -26,6 +27,41 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             _roleManager = roleManager;
             _logger = logger;
             _ctx = ctx;
+        }
+
+        public IActionResult RollenBeheer()
+        {
+            RollenBeheerViewModel vm = new RollenBeheerViewModel()
+            {
+                Gebruikers = new SelectList(_userManager.Users.ToList(), "Id", "UserName"),
+                Rollen = new SelectList(_roleManager.Roles.ToList(), "Id", "Name")
+            };
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RollenBeheer(RollenBeheerViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Gebruiker user = await _userManager.FindByIdAsync(viewModel.Id);
+                IdentityRole role = await _roleManager.FindByIdAsync(viewModel.RolId);
+                if (user != null && role != null)
+                {
+                    IdentityResult result = await _userManager.AddToRoleAsync(user, role.Name);
+                    if (result.Succeeded)
+                        return RedirectToAction("Index");
+                    else
+                    {
+                        foreach (IdentityError error in result.Errors)
+                            ModelState.AddModelError("", error.Description);
+                    }
+                }
+                else
+                    ModelState.AddModelError("", "Gebruiker of rol niet gevonden");
+            }
+            return View(viewModel);
         }
 
         public IActionResult Index()
