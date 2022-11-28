@@ -16,7 +16,6 @@
                 <td class="text-light">E-mailadres</td>
                 <td></td>
                 <td></td>
-                <td class="text-light">Admin</td>
             </tr>
         </thead>
         <tbody>
@@ -25,11 +24,12 @@
                 <tr class="mt-2">
                     <td>@Html.DisplayFor(modelItem => gebruiker.UserName)</td>
                     <td>@Html.DisplayFor(modelItem => gebruiker.Emailadres)</td>
-                    <td><a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="DetailsGebruiker">Details</a></td>
-                    <td><a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="VerwijderGebruiker">Verwijder</a></td>
                     <td>
-                        <input class="form-check-input" type="checkbox" value="@Html.DisplayFor(modelItem => gebruiker.IsAdmin)" />
-                    </td>
+                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@gebruiker.Id" asp-controller="Admin" asp-action="DetailsGebruiker">Details</a>
+                        </td>
+                    <td>
+                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@gebruiker.Id" asp-controller="Admin" asp-action="VerwijderGebruiker">Verwijder</a>
+                        </td>
                 </tr>
             }
         </tbody>

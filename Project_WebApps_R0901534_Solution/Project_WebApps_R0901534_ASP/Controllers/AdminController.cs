@@ -51,7 +51,8 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 {
                     IdentityResult result = await _userManager.AddToRoleAsync(user, role.Name);
                     if (result.Succeeded)
-                        return RedirectToAction("Index");
+                        return RedirectToAction("RollenBeheer");
+                        
                     else
                     {
                         foreach (IdentityError error in result.Errors)
@@ -108,9 +109,21 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             }
         }
 
-        public IActionResult VerwijderGebruiker()
+        public async Task<IActionResult> VerwijderGebruiker(string id)
         {
-            return View();
+            Gebruiker user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                    return RedirectToAction("Index");
+                else
+                    foreach (IdentityError error in result.Errors)
+                        ModelState.AddModelError("", error.Description);
+            }
+            else
+                ModelState.AddModelError("", "User Not Found");
+            return View("Index", _userManager.Users.ToList());
         }
 
         [HttpGet]
