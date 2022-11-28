@@ -4,11 +4,11 @@
 }
 
 <div class="container-fluid bg-warning mb-5 pb-3 pt-3">
-    <form asp-action="UpdateOverMij">
-        <input type="hidden" asp-for="OverMijId"/>
+    <form asp-action="UpdateOverMij">        
         <div asp-validation-summary="ModelOnly" class="text-danger">
+            <input type="hidden" asp-for="OverMijId" />
             <div class="form-group">
-                <label asp-for="TitelAppInfo" class="control-label">@Html.DisplayNameFor(model => this.Model.TitelAppInfo)</label>
+                <label asp-for="TitelAppInfo" class="control-label"></label>
                 <input asp-for="TitelAppInfo" class="form-control" />
                 <span asp-validation-for="TitelAppInfo" class="text-danger"></span>
             </div>
@@ -24,8 +24,9 @@
             <input class="form-control mt-1" placeholder="Tekst 2" />
             <label class="control-label text-light mt-1">Pas afbeelding(?) 2 aan</label><br />
             <input type="file" class="mt-1" name="img_2"><br />
-            <button class="btn btn-warning mx-auto mt-4 border border-light rounded text-light">Opslaan</button>
+            <button type="submit" class="btn btn-warning mx-auto mt-4 border border-light rounded text-light">Opslaan</button>
         </div>
+        <p>test</p>
     </form>
 
 </div>

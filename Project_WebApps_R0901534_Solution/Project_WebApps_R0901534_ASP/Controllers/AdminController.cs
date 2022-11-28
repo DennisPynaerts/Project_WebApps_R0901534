@@ -29,6 +29,8 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             _ctx = ctx;
         }
 
+        #region RollenBeheer
+
         public IActionResult RollenBeheer()
         {
             RollenBeheerViewModel vm = new RollenBeheerViewModel()
@@ -65,6 +67,9 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             return View(viewModel);
         }
 
+        #endregion
+
+        #region Index
         public IActionResult Index()
         {
             GebruikersListViewModel viewModel = new GebruikersListViewModel();
@@ -74,23 +79,30 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             return View(viewModel);
         }
 
-        public async Task<IActionResult> CreateGebruiker(CreateGebruikerViewModel viewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                Gebruiker gebruiker = new Gebruiker() { };
+        #endregion
 
-                IdentityResult res = await _userManager.CreateAsync(gebruiker);
-                if (res.Succeeded) return RedirectToAction("Index");
-                else
-                {
-                    foreach (IdentityError error in res.Errors)
-                        ModelState.AddModelError("", error.Description);
-                }
-            }
-            return View(viewModel);
-        }
+        #region CreateGebruiker
 
+        //public async Task<IActionResult> CreateGebruiker(CreateGebruikerViewModel viewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Gebruiker gebruiker = new Gebruiker() { };
+
+        //        IdentityResult res = await _userManager.CreateAsync(gebruiker);
+        //        if (res.Succeeded) return RedirectToAction("Index");
+        //        else
+        //        {
+        //            foreach (IdentityError error in res.Errors)
+        //                ModelState.AddModelError("", error.Description);
+        //        }
+        //    }
+        //    return View(viewModel);
+        //}
+
+        #endregion
+
+        #region Details gebruiker
         public IActionResult GebruikerDetails(string id)
         {
             Gebruiker gebruiker = _userManager.Users.Where(g => g.Id == id).FirstOrDefault();
@@ -113,6 +125,9 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             }
         }
 
+        #endregion
+
+        #region Verwijder gebruiker
         public async Task<IActionResult> VerwijderGebruiker(string id)
         {
             Gebruiker user = await _userManager.FindByIdAsync(id);
@@ -130,15 +145,18 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             return View("Index", _userManager.Users.ToList());
         }
 
-        [HttpGet]
-        public IActionResult AdminOverMij(int id = 1)
+        #endregion
+
+        
+        public IActionResult AdminOverMij(int OverMijId = 1)
         {
-            OverMij overMij = _ctx.OverMijs.Where(o => o.OverMijId == id).FirstOrDefault();
+            OverMij overMij = _ctx.OverMijs.Where(o => o.OverMijId == OverMijId).FirstOrDefault();
 
             if (overMij == null) return NotFound();
 
             UpdateOverMijViewModel vm = new UpdateOverMijViewModel()
             {
+                OverMijId = overMij.OverMijId,
                 TitelAppInfo = overMij.TitelAppInfo,
                 TekstAppInfo = overMij.TekstAppInfo,
                 TitelPersInfo = overMij.TitelPersInfo,
@@ -151,9 +169,9 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateOverMij(int id, UpdateOverMijViewModel viewModel)
+        public async Task<IActionResult> UpdateOverMij(int OverMijId, UpdateOverMijViewModel viewModel)
         {
-            if (id != viewModel.OverMijId)
+            if (OverMijId != viewModel.OverMijId)
             {
                 return NotFound();
             }
@@ -164,6 +182,7 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 {
                     OverMij overMij = new OverMij()
                     {
+                        OverMijId = viewModel.OverMijId,
                         TitelPersInfo = viewModel.TitelPersInfo,
                         TekstPersInfo = viewModel.TekstPersInfo,
                         TitelAppInfo = viewModel.TitelAppInfo,
