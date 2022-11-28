@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.AspNetCore.Components.Server.Circuits;
 using Circuit = Project_WebApps_R0901534_ASP.Models.Circuit;
+using System.Numerics;
 
 namespace Project_WebApps_R0901534_ASP.Controllers
 {
@@ -245,6 +246,29 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 };
                 return View("Circuit", viewModel);
             }
+        }
+
+        public IActionResult CircuitToevoegen()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> CircuitToevoegen(CreateCircuitViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _ctx.Add(new Circuit()
+                {
+                    Naam = viewModel.Naam,
+                    Afbeelding=viewModel.Afbeelding
+                });
+                await _ctx.SaveChangesAsync();
+                return RedirectToAction("Circuit");
+            }
+            return View(viewModel);
         }
 
         public async Task<IActionResult> VerwijderCircuit(int? id)
