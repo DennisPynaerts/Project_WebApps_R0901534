@@ -91,12 +91,16 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             return View(viewModel);
         }
 
-        public IActionResult DetailsGebruiker(string id)
+        public IActionResult GebruikerDetails(string id)
         {
             Gebruiker gebruiker = _userManager.Users.Where(g => g.Id == id).FirstOrDefault();
             if (gebruiker != null)
             {
-                GebruikerDetailsViewModel viewModel = new GebruikerDetailsViewModel() { };
+                GebruikerDetailsViewModel viewModel = new GebruikerDetailsViewModel() 
+                {
+                    Nickname = gebruiker.Nickname,
+                    Email = gebruiker.Emailadres
+                };
                 return View(viewModel);
             }
             else
