@@ -1,6 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Project_WebApps_R0901534_ASP.ViewModels.CircuitListViewModel
 @{
     ViewData["Title"] = "Admin - ";
 }
+
+<h1 class="custom-text-color text-center mx-3 my-5">Overzicht circuits</h1>
+
+<div class="table-responsive rounded mb-5">
+    <table class="table bg-warning table-striped border border-light">
+        <thead>
+            <tr>
+                <td class="text-light">Circuit Nr.</td>
+                <td class="text-light">Naam</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var circuit in Model.Circuits)
+            {
+                <tr class="mt-2">
+                    <td>@Html.DisplayFor(modelItem => circuit.CircuitId)</td>
+                    <td>@Html.DisplayFor(modelItem => circuit.Naam)</td>
+                    <td>
+                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Admin" asp-action="CircuitDetails">Details</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Admin" asp-action="VerwijderGebruiker">Verwijder</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Admin" asp-action="VerwijderGebruiker">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
