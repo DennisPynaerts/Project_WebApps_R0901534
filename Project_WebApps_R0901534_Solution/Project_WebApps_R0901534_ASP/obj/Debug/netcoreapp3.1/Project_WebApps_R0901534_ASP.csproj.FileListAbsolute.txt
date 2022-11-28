@@ -213,3 +213,4 @@ C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_Web
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CircuitDetails.cshtml.g.cs
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\VerwijderCircuit.cshtml.g.cs
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CircuitToevoegen.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CircuitAanpassen.cshtml.g.cs
