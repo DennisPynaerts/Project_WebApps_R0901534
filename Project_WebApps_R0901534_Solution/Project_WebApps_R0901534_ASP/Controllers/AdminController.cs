@@ -11,6 +11,7 @@ using Project_WebApps_R0901534_ASP.Data;
 using Project_WebApps_R0901534_ASP.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Project_WebApps_R0901534_ASP.Controllers
 {
@@ -147,10 +148,12 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
         #endregion
 
-        
-        public IActionResult AdminOverMij(int OverMijId = 1)
+        #region Edit OverMij
+        public async Task<IActionResult> AdminOverMij(int? id)
         {
-            OverMij overMij = _ctx.OverMijs.Where(o => o.OverMijId == OverMijId).FirstOrDefault();
+            if (id == null) return NotFound();
+
+            var overMij = await _ctx.OverMijs.FindAsync(id);
 
             if (overMij == null) return NotFound();
 
@@ -164,17 +167,15 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 Afbeelding1 = overMij.Afbeelding1,
                 Afbeelding2 = overMij.Afbeelding2
             };
+
             return View(vm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateOverMij(int OverMijId, UpdateOverMijViewModel viewModel)
+        public async Task<IActionResult> UpdateOverMij(int id, UpdateOverMijViewModel overMijViewModel)
         {
-            if (OverMijId != viewModel.OverMijId)
-            {
-                return NotFound();
-            }
+            if (id != overMijViewModel.OverMijId) return NotFound();
 
             if (ModelState.IsValid)
             {
@@ -182,32 +183,30 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 {
                     OverMij overMij = new OverMij()
                     {
-                        OverMijId = viewModel.OverMijId,
-                        TitelPersInfo = viewModel.TitelPersInfo,
-                        TekstPersInfo = viewModel.TekstPersInfo,
-                        TitelAppInfo = viewModel.TitelAppInfo,
-                        TekstAppInfo = viewModel.TekstAppInfo,
-                        Afbeelding1 = viewModel.Afbeelding1,
-                        Afbeelding2 = viewModel.Afbeelding2
+                        OverMijId = overMijViewModel.OverMijId,
+                        TitelAppInfo = overMijViewModel.TitelAppInfo,
+                        TekstAppInfo = overMijViewModel.TekstAppInfo,
+                        TitelPersInfo = overMijViewModel.TitelPersInfo,
+                        TekstPersInfo = overMijViewModel.TekstPersInfo,
+                        Afbeelding1 = overMijViewModel.Afbeelding1,
+                        Afbeelding2 = overMijViewModel.Afbeelding2
                     };
                     _ctx.Update(overMij);
                     await _ctx.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException e)
+                catch (DbUpdateConcurrencyException)
                 {
-                    if (!_ctx.OverMijs.Any(d => d.OverMijId == viewModel.OverMijId))
-                    {
+                    if (!_ctx.OverMijs.Any(o => o.OverMijId == overMijViewModel.OverMijId))
                         return NotFound();
-                    }
-                    else
-                    {
+                    else 
                         throw;
-                    }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
-            return View(viewModel);
+            return View(overMijViewModel);
         }
+
+        #endregion
 
         public IActionResult Circuit()
         {
