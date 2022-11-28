@@ -17,10 +17,14 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 {
     public class AdminController : Controller
     {
+        #region Attributes
+
         private UserManager<Gebruiker> _userManager;
         private RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<AdminController> _logger;
         private readonly ForzaContext _ctx;
+
+        #endregion
 
         public AdminController(UserManager<Gebruiker> userManager, RoleManager<IdentityRole> roleManager, ILogger<AdminController> logger, ForzaContext ctx)
         {
@@ -82,7 +86,7 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
         #endregion
 
-        #region CreateGebruiker
+        #region Create gebruiker
 
         //public async Task<IActionResult> CreateGebruiker(CreateGebruikerViewModel viewModel)
         //{
@@ -103,7 +107,7 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
         #endregion
 
-        #region Details gebruiker
+        #region Gebruiker details
         public IActionResult GebruikerDetails(string id)
         {
             Gebruiker gebruiker = _userManager.Users.Where(g => g.Id == id).FirstOrDefault();
@@ -208,9 +212,39 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
         #endregion
 
+        #region Circuits
         public IActionResult Circuit()
         {
-            return View();
+            CircuitListViewModel viewModel = new CircuitListViewModel();
+            {
+                viewModel.Circuits = _ctx.Circuits.ToList();
+            };
+            return View(viewModel);
         }
+
+        public IActionResult CircuitDetails(int id)
+        {
+            Circuit circuit = _ctx.Circuits.Where(c => c.CircuitId == id).FirstOrDefault();
+            if (circuit != null)
+            {
+                CircuitDetailViewModel viewModel = new CircuitDetailViewModel()
+                {
+                    Naam = circuit.Naam,
+                    Afbeelding = circuit.Afbeelding,
+                    CircuitId = id
+                };
+                return View(viewModel);
+            }
+            else
+            {
+                CircuitListViewModel viewModel = new CircuitListViewModel()
+                {
+                    Circuits = _ctx.Circuits.ToList()
+                };
+                return View("Circuit", viewModel);
+            }
+        }
+
+        #endregion
     }
 }
