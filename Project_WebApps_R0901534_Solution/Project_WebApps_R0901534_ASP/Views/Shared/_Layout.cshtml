@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] Forza</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/owlcarousel2-2.3.4/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/lib/owlcarousel2-2.3.4/owl.theme.default.min.css" rel="stylesheet" />
 </head>
 <body class="bg-dark text-light">
     <header>
@@ -26,6 +28,9 @@
                     <ul class="navbar-nav">
                         <li class="nav-item mx-5">
                             <a class="nav-link text-light bg-dark" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item mx-5">
+                            <a class="nav-link text-light bg-dark" asp-controller="Galerij" asp-action="Index">Galerij</a>
                         </li>
                         <li class="nav-item mx-5">
                             <a class="nav-link text-light bg-dark" asp-controller="Leaderboard" asp-action="Index">Leaderboard</a>
@@ -58,11 +63,12 @@
                 <p class="mb-0 d-flex flex-wrap text-center">&copy; 2022, Dennis Pynaerts</p>
         </div>
     </footer>
-
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/owlcarousel2-2.3.4/owl.carousel.js"></script>
+    <script src="~/lib/owlcarousel2-2.3.4/owl.carousel.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script src="~/js/site.js" asp-append-version="true"></script>    
     @RenderSection("Scripts", required: false)
 </body>
 </html>

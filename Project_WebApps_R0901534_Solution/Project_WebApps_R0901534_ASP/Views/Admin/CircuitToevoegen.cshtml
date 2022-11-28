@@ -23,3 +23,9 @@
     </form>
     <a class="btn btn-dark mx-auto mb-2 mt-4 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="Circuit">Terug</a>
  </div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

@@ -20,7 +20,7 @@ using Project_WebApps_R0901534_ASP;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"444243e3de001ab2252df0ffb3689d5045089f56", @"/Views/Leaderboard/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a379e592c320bb1d9359465af64db00bfdff8c8d", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1ca71ac2ad8f47b4f10f03997b75ab342e7a2bd1", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Leaderboard_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Project_WebApps_R0901534_ASP.ViewModels.CircuitListViewModel>
     #nullable disable

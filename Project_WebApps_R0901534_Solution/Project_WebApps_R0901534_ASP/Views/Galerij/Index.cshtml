@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Galerij - ";
+}
+
+<div class="container-fluid mb-5">
+    <div class="owl-carousel owl-theme">
+        <div>
+            <img src="~/images/PorscheCaymanRdAtlBends.jpg" alt="PorscheCayman_RdAtl1" />
+        </div>
+        <div>
+            <img src="~/images/PorscheCaymanRdAtlSign.jpg" alt="PorscheCayman_RdAtl2" />
+        </div>
+        <div>
+            <img src="~/images/R34RioStoplight.jpg" alt="R34_Rio" />
+        </div>
+        <div>
+            <img src="~/images/R34WetNurbGP.jpg" alt="R34_Nurb" />
+        </div>
+        <div>
+            <img src="~/images/Stang_eauRouge.jpg" alt="Stang_Spa" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel();
+        });
+
+
+    </script>
+}
