@@ -12,6 +12,8 @@ using Project_WebApps_R0901534_ASP.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.AspNetCore.Components.Server.Circuits;
+using Circuit = Project_WebApps_R0901534_ASP.Models.Circuit;
 
 namespace Project_WebApps_R0901534_ASP.Controllers
 {
@@ -243,6 +245,36 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 };
                 return View("Circuit", viewModel);
             }
+        }
+
+        public async Task<IActionResult> VerwijderCircuit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var circuit = await _ctx.Circuits.FindAsync(id);
+            if (circuit == null)
+                return NotFound();
+
+            DeleteCircuitViewModel viewModel = new DeleteCircuitViewModel()
+            {
+                CircuitId = circuit.CircuitId,
+                Naam = circuit.Naam,
+                Afbeelding=circuit.Afbeelding
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost, ActionName("VerwijderCircuit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> VerwijderCircuit(int id)
+        {
+            var circuit = await _ctx.Circuits.FindAsync(id);
+            _ctx.Circuits.Remove(circuit);
+            await _ctx.SaveChangesAsync();
+            return RedirectToAction(nameof(Circuit));
         }
 
         #endregion
