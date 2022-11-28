@@ -23,18 +23,6 @@ a {
     font-size: 20px;
 }
 
-/*.custom-text-color {
-    color: #FAFBFB;
-}
-
-.custom-button-color {
-    background-color: #FFBE72
-}
-
-.nav-item-bg {
-    background-color: #17242D;
-}*/
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -45,6 +33,7 @@ html {
 
 body {
     font-family: Verdana;
+    width: 100%;
 }
 
 main {
