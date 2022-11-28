@@ -271,6 +271,58 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> CircuitAanpassen(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var circuit = await _ctx.Circuits.FindAsync(id);
+
+            if (circuit == null)
+                return NotFound();
+
+            EditCircuitViewModel viewModel = new EditCircuitViewModel()
+            {
+                CircuitId = circuit.CircuitId,
+                Naam = circuit.Naam,
+                Afbeelding = circuit.Afbeelding
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CircuitAanpassen(int id, EditCircuitViewModel viewModel)
+        {
+            if (id != viewModel.CircuitId)
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Circuit circuit = new Circuit()
+                    {
+                        CircuitId= viewModel.CircuitId,
+                        Naam= viewModel.Naam,   
+                        Afbeelding = viewModel.Afbeelding
+                    };
+                    _ctx.Update(circuit);
+                    await _ctx.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_ctx.Circuits.Any(c => c.CircuitId == viewModel.CircuitId))
+                        return NotFound();
+                    else
+                        throw;
+                }
+                return RedirectToAction(nameof(Circuit));
+            }
+            return View(viewModel);
+        }
+
         public async Task<IActionResult> VerwijderCircuit(int? id)
         {
             if (id == null)
