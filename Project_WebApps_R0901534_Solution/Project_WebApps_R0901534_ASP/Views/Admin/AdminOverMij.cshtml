@@ -5,8 +5,8 @@
 
 <div class="container-fluid bg-warning mb-5 pb-3 pt-3">
     <form asp-action="UpdateOverMij">        
-        <div asp-validation-summary="ModelOnly" class="text-danger">
-            <input type="hidden" asp-for="OverMijId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="OverMijId" />
             <div class="form-group">
                 <label asp-for="TitelAppInfo" class="control-label"></label>
                 <input asp-for="TitelAppInfo" class="form-control" />
@@ -39,8 +39,7 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-warning mx-auto mt-4 border border-light rounded text-light">Opslaan</button>
-            </div>
-        </div>        
+            </div>             
     </form>
 </div>
 
