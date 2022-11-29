@@ -23,7 +23,7 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             var tracks = _ctx.Circuits;
 
             CircuitListViewModel circuitListViewModel = new CircuitListViewModel();
-            circuitListViewModel.Circuits = tracks.ToList();
+            circuitListViewModel.Circuits = tracks.OrderBy(c => c.Naam).ToList();
 
             return View(circuitListViewModel);
         }
