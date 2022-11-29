@@ -7,7 +7,7 @@
         @foreach (var circuit in Model.Circuits) {
         <div class="col-md-4 col-sm-12 mb-4">
             <div class="card border border-light rounded" style="width: 18rem;">
-                <img src="~/images/@circuit.Afbeelding" class="card-img-top" alt="@circuit.Naam">
+                <img src="~/circuits/@circuit.Afbeelding" class="card-img-top" alt="@circuit.Naam">
                 <div class="card-body bg-warning text-light text-center border border-top-1 border-light">
                     <a class="btn btn-warning mx-auto mt-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Leaderboard" asp-action="Detail">@circuit.Naam</a>
                 </div>
