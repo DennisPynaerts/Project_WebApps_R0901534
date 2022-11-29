@@ -150,15 +150,15 @@ insert into Forza.dbo.AutoKlasses(AutoKlasseId, gebruikerAutoId, klasseId) value
 set identity_insert AutoKlasses off;
 set identity_insert Circuits on;
 
-insert into Forza.dbo.Circuits(CircuitId, naam, afbeelding) values (1, 'COTA', 'C:\TM\2\Webapplicaties\Project\images\COTA.jpg');
-insert into Forza.dbo.Circuits(CircuitId, naam, afbeelding) values (2, 'Daytona', 'C:\TM\2\Webapplicaties\Project\images\Daytona.jpg');
-insert into Forza.dbo.Circuits(CircuitId, naam, afbeelding) values (3, 'Hockenheim', 'C:\TM\2\Webapplicaties\Project\images\Hockenheim.jpg');
-insert into Forza.dbo.Circuits(CircuitId, naam, afbeelding) values (4, 'Laguna Seca', 'C:\TM\2\Webapplicaties\Project\images\Laguna Seca.jpg');
-insert into Forza.dbo.Circuits(CircuitId, naam, afbeelding) values (5, 'Mugello', 'C:\TM\2\Webapplicaties\Project\images\Mugello.jpg');
-insert into Forza.dbo.Circuits(CircuitId, naam, afbeelding) values (6, 'Road Atlanta', 'C:\TM\2\Webapplicaties\Project\images\RoadAtlanta.jpg');
-insert into Forza.dbo.Circuits(CircuitId, naam, afbeelding) values (7, 'Sebring', 'C:\TM\2\Webapplicaties\Project\images\Sebring.jpg');
-insert into Forza.dbo.Circuits(CircuitId, naam, afbeelding) values (8, 'Sonoma', 'C:\TM\2\Webapplicaties\Project\images\Sonoma.jpg');
-insert into Forza.dbo.Circuits(CircuitId, naam, afbeelding) values (9, 'Watkins Glen', 'C:\TM\2\Webapplicaties\Project\images\WatkinsGlen.jpg');
+insert into Forza.dbo.Circuits(CircuitId, naam, Afbeelding) values (1, 'COTA', 'COTA.jpg');
+insert into Forza.dbo.Circuits(CircuitId, naam, Afbeelding) values (2, 'Daytona', 'Daytona.jpg');
+insert into Forza.dbo.Circuits(CircuitId, naam, Afbeelding) values (3, 'Hockenheim', 'Hockenheim.jpg');
+insert into Forza.dbo.Circuits(CircuitId, naam, Afbeelding) values (4, 'Laguna Seca', 'Laguna Seca.jpg');
+insert into Forza.dbo.Circuits(CircuitId, naam, Afbeelding) values (5, 'Mugello', 'Mugello.jpg');
+insert into Forza.dbo.Circuits(CircuitId, naam, Afbeelding) values (6, 'Road Atlanta', 'Road Atlanta.jpg');
+insert into Forza.dbo.Circuits(CircuitId, naam, Afbeelding) values (7, 'Sebring', 'Sebring.jpg');
+insert into Forza.dbo.Circuits(CircuitId, naam, Afbeelding) values (8, 'Sonoma', 'Sonoma.jpg');
+insert into Forza.dbo.Circuits(CircuitId, naam, Afbeelding) values (9, 'Watkins Glen', 'Watkins Glen.jpg');
 
 set identity_insert Circuits off;
 set identity_insert Laptimes on;
