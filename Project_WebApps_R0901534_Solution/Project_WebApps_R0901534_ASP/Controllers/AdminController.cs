@@ -186,8 +186,34 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateOverMij(int id, UpdateOverMijViewModel overMijViewModel)
+        public async Task<IActionResult> UpdateOverMij(UpdateOverMijViewModel overMijViewModel, IFormFile postedFile1, IFormFile postedFile2, int id = 1)
         {
+            string path = Path.Combine(this._environment.WebRootPath, "overMij");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            string fileName1 = string.Empty;
+            string fileName2 = string.Empty;
+
+            if (postedFile1.Length > 0 && postedFile2.Length > 0)
+            {
+                fileName1 = Path.GetFileName(postedFile1.FileName);
+                fileName2 = Path.GetFileName(postedFile2.FileName);
+
+                using (var stream = new FileStream(Path.Combine(path, fileName1), FileMode.Create))
+                {
+                    stream.Position = 0;
+                    await postedFile1.CopyToAsync(stream);
+                }
+                using (var stream = new FileStream(Path.Combine(path, fileName2), FileMode.Create))
+                {
+                    stream.Position = 0;
+                    await postedFile2.CopyToAsync(stream);
+                }
+            }
+
             if (id != overMijViewModel.OverMijId) return NotFound();
 
             if (ModelState.IsValid)
@@ -201,8 +227,8 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                         TekstAppInfo = overMijViewModel.TekstAppInfo,
                         TitelPersInfo = overMijViewModel.TitelPersInfo,
                         TekstPersInfo = overMijViewModel.TekstPersInfo,
-                        Afbeelding1 = overMijViewModel.Afbeelding1,
-                        Afbeelding2 = overMijViewModel.Afbeelding2
+                        Afbeelding1 = fileName1,
+                        Afbeelding2 = fileName2
                     };
                     _ctx.Update(overMij);
                     await _ctx.SaveChangesAsync();
