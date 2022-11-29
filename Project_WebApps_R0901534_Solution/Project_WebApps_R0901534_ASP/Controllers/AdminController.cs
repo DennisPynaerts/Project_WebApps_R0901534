@@ -15,6 +15,10 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.AspNetCore.Components.Server.Circuits;
 using Circuit = Project_WebApps_R0901534_ASP.Models.Circuit;
 using System.Numerics;
+using Microsoft.AspNetCore.Hosting;
+using System.Collections.Generic;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace Project_WebApps_R0901534_ASP.Controllers
 {
@@ -26,15 +30,17 @@ namespace Project_WebApps_R0901534_ASP.Controllers
         private RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<AdminController> _logger;
         private readonly ForzaContext _ctx;
+        private IWebHostEnvironment _environment;
 
         #endregion
 
-        public AdminController(UserManager<Gebruiker> userManager, RoleManager<IdentityRole> roleManager, ILogger<AdminController> logger, ForzaContext ctx)
+        public AdminController(UserManager<Gebruiker> userManager, RoleManager<IdentityRole> roleManager, ILogger<AdminController> logger, ForzaContext ctx, IWebHostEnvironment environment)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _logger = logger;
             _ctx = ctx;
+            _environment = environment;
         }
 
         #region RollenBeheer
@@ -256,15 +262,34 @@ namespace Project_WebApps_R0901534_ASP.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> CircuitToevoegen(CreateCircuitViewModel viewModel)
+        public async Task<IActionResult> CircuitToevoegen(CreateCircuitViewModel viewModel, IFormFile postedFile)
         {
+            string path = Path.Combine(this._environment.WebRootPath, "circuits");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            string fileName = string.Empty;
+
+            if (postedFile.Length > 0)
+            {
+                fileName = Path.GetFileName(postedFile.FileName);
+
+                using (var stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
+                {
+                    stream.Position = 0;
+                    await postedFile.CopyToAsync(stream);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 _ctx.Add(new Circuit()
                 {
                     Naam = viewModel.Naam,
-                    Afbeelding=viewModel.Afbeelding
-                });
+                    Afbeelding = viewModel.Naam + System.IO.Path.GetExtension(fileName)
+                }) ;
                 await _ctx.SaveChangesAsync();
                 return RedirectToAction("Circuit");
             }
