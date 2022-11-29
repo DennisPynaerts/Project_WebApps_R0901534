@@ -1,13 +1,16 @@
 ﻿@model Project_WebApps_R0901534_ASP.ViewModels.GebruikerDetailsViewModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1 class="custom-text-color text-center mx-3 my-5">Details gebruiker</h1>
+@if (this.User.Identity.IsAuthenticated) {
+    if (User.IsInRole("admin"))
+    {
+        <h1 class="custom-text-color text-center mx-3 my-5">Details gebruiker</h1>
 
-<h2 class="custom-text-color text-center mx-3 my-5">Nickname: @Model.Nickname</h2>
+        <h2 class="custom-text-color text-center mx-3 my-5">Nickname: @Model.Nickname</h2>
 
-<h2 class="custom-text-color text-center mx-3 my-5">E-mailadres: @Model.Email</h2>
+        <h2 class="custom-text-color text-center mx-3 my-5">E-mailadres: @Model.Email</h2>
+    }
+}

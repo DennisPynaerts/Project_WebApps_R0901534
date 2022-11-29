@@ -3,57 +3,63 @@
     ViewData["Title"] = "Admin - ";
 }
 
-<h1 class="custom-text-color text-center mx-3 my-5">Overzicht circuits</h1>
+@if (this.User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("admin"))
+    {
+        <h1 class="custom-text-color text-center mx-3 my-5">Overzicht circuits</h1>
 
-<div class="table-responsive rounded mb-5">
-    <table class="table bg-warning table-striped border border-light">
-        <thead>
-            <tr>
-                <td class="text-light">Circuit Nr.</td>
-                <td class="text-light">Naam</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var circuit in Model.Circuits)
-            {
-                <tr class="mt-2">
-                    <td>@Html.DisplayFor(modelItem => circuit.CircuitId)</td>
-                    <td>@Html.DisplayFor(modelItem => circuit.Naam)</td>
-                    <td>
-                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Admin" asp-action="CircuitDetails">Details</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Admin" asp-action="VerwijderCircuit">Verwijderen</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Admin" asp-action="CircuitAanpassen">Edit</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+        <div class="table-responsive rounded mb-5">
+            <table class="table bg-warning table-striped border border-light">
+                <thead>
+                    <tr>
+                        <td class="text-light">Circuit Nr.</td>
+                        <td class="text-light">Naam</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var circuit in Model.Circuits)
+                    {
+                        <tr class="mt-2">
+                            <td>@Html.DisplayFor(modelItem => circuit.CircuitId)</td>
+                            <td>@Html.DisplayFor(modelItem => circuit.Naam)</td>
+                            <td>
+                                <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Admin" asp-action="CircuitDetails">Details</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Admin" asp-action="VerwijderCircuit">Verwijderen</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@circuit.CircuitId" asp-controller="Admin" asp-action="CircuitAanpassen">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
-<hr class="bg-light" />
+        <hr class="bg-light" />
 
-<h1 class="custom-text-color text-center mx-3 my-5">Circuit toevoegen</h1>
+        <h1 class="custom-text-color text-center mx-3 my-5">Circuit toevoegen</h1>
 
-<div class="container-fluid mt-5">
-    <div class="row align-items-md-stretch mb-5 border border-light rounded">
-        <div class="col-md-5 col-sm-12 mx-0 bg-warning p-3">
-            <div class="bg-warning h-100 ">
-                <img class="img-fluid rounded-circle" src="~/images/PorscheCaymanRdAtlBends.jpg" alt="PorscheCaymanRoadAtlanta">
+        <div class="container-fluid mt-5">
+            <div class="row align-items-md-stretch mb-5 border border-light rounded">
+                <div class="col-md-5 col-sm-12 mx-0 bg-warning p-3">
+                    <div class="bg-warning h-100 ">
+                        <img class="img-fluid rounded-circle" src="~/images/PorscheCaymanRdAtlBends.jpg" alt="PorscheCaymanRoadAtlanta">
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-12 mx-0 bg-warning p-3 align-content-center">
+                    <div class="h-100 custom-text-color bg-warning mx-auto">
+                        <h3>Klik op de knop om een circuit toe te voegen!</h3>
+                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="CircuitToevoegen">Nieuw circuit</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-7 col-sm-12 mx-0 bg-warning p-3 align-content-center">
-            <div class="h-100 custom-text-color bg-warning mx-auto">
-                <h3>Klik op de knop om een circuit toe te voegen!</h3>
-                <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="CircuitToevoegen">Nieuw circuit</a>
-            </div>
-        </div>
-    </div>
-</div>
+    }
+}
 
