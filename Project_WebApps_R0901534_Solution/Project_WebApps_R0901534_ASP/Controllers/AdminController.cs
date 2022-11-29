@@ -288,7 +288,7 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 _ctx.Add(new Circuit()
                 {
                     Naam = viewModel.Naam,
-                    Afbeelding = viewModel.Naam + System.IO.Path.GetExtension(fileName)
+                    Afbeelding = fileName + System.IO.Path.GetExtension(fileName)
                 }) ;
                 await _ctx.SaveChangesAsync();
                 return RedirectToAction("Circuit");
@@ -351,11 +351,10 @@ namespace Project_WebApps_R0901534_ASP.Controllers
         public async Task<IActionResult> VerwijderCircuit(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var circuit = await _ctx.Circuits.FindAsync(id);
+
             if (circuit == null)
                 return NotFound();
 
