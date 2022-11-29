@@ -3,45 +3,51 @@
     ViewData["Title"] = "Admin - ";
 }
 
-<div class="container-fluid bg-warning mb-5 pb-3 pt-3 border border-light rounded">
-    <form asp-controller="Admin" asp-action="UpdateOverMij" method="post" enctype="multipart/form-data">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="OverMijId" />
-            <div class="form-group">
-                <label asp-for="TitelAppInfo" class="control-label"></label>
-                <input asp-for="TitelAppInfo" class="form-control" />
-                <span asp-validation-for="TitelAppInfo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TekstAppInfo" class="control-label"></label>
-                <input asp-for="TekstAppInfo" class="form-control" />
-                <span asp-validation-for="TekstAppInfo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TitelPersInfo" class="control-label"></label>
-                <input asp-for="TitelPersInfo" class="form-control" />
-                <span asp-validation-for="TitelPersInfo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TekstPersInfo" class="control-label"></label>
-                <input asp-for="TekstPersInfo" class="form-control" />
-                <span asp-validation-for="TekstPersInfo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Afbeelding1" class="control-label"></label>
-            <input type="file" name="postedFile1" class="form-control" />
-                <span asp-validation-for="Afbeelding1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Afbeelding2" class="control-label"></label>
-            <input type="file" name="postedFile2" class="form-control" />
-                <span asp-validation-for="Afbeelding2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-warning mx-auto mt-4 border border-light rounded text-light">Opslaan</button>
-            </div>             
-    </form>
-</div>
+@if (this.User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("admin"))
+    {
+        <div class="container-fluid bg-warning mb-5 pb-3 pt-3 border border-light rounded">
+            <form asp-controller="Admin" asp-action="UpdateOverMij" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="OverMijId" />
+                <div class="form-group">
+                    <label asp-for="TitelAppInfo" class="control-label"></label>
+                    <input asp-for="TitelAppInfo" class="form-control" />
+                    <span asp-validation-for="TitelAppInfo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TekstAppInfo" class="control-label"></label>
+                    <input asp-for="TekstAppInfo" class="form-control" />
+                    <span asp-validation-for="TekstAppInfo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TitelPersInfo" class="control-label"></label>
+                    <input asp-for="TitelPersInfo" class="form-control" />
+                    <span asp-validation-for="TitelPersInfo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TekstPersInfo" class="control-label"></label>
+                    <input asp-for="TekstPersInfo" class="form-control" />
+                    <span asp-validation-for="TekstPersInfo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Afbeelding1" class="control-label"></label>
+                    <input type="file" name="postedFile1" class="form-control" />
+                    <span asp-validation-for="Afbeelding1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Afbeelding2" class="control-label"></label>
+                    <input type="file" name="postedFile2" class="form-control" />
+                    <span asp-validation-for="Afbeelding2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-warning mx-auto mt-4 border border-light rounded text-light">Opslaan</button>
+                </div>
+            </form>
+        </div>
+    }
+}
 
 @section Scripts{
     @{

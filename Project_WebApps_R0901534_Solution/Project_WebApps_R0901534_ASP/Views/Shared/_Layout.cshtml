@@ -40,15 +40,21 @@
                             <li class="nav-item mx-5">
                                 <a class="nav-link text-light bg-dark" asp-controller="OverMij" asp-action="Index">Over Mij</a>
                             </li>
-                            <li class="nav-item dropdown mx-5">
-                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Admin </a>
-                                <div class="dropdown-menu text-light bg-dark" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item text-light bg-dark" asp-controller="Admin" asp-action="Index">Gebruikers</a>
-                                    <a class="dropdown-item text-light bg-dark" asp-controller="Admin" asp-action="RollenBeheer">Rollen</a>
-                                    <a class="dropdown-item text-light bg-dark" asp-controller="Admin" asp-route-id="1" asp-action="AdminOverMij">Over Mij</a>
-                                    <a class="dropdown-item text-light bg-dark" asp-controller="Admin" asp-action="Circuit">Circuits</a>
-                                </div>
-                            </li>
+                            @if (this.User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("admin"))
+                                {
+                                    <li class="nav-item dropdown mx-5">
+                                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Admin </a>
+                                        <div class="dropdown-menu text-light bg-dark" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item text-light bg-dark" asp-controller="Admin" asp-action="Index">Gebruikers</a>
+                                            <a class="dropdown-item text-light bg-dark" asp-controller="Admin" asp-action="RollenBeheer">Rollen</a>
+                                            <a class="dropdown-item text-light bg-dark" asp-controller="Admin" asp-route-id="1" asp-action="AdminOverMij">Over Mij</a>
+                                            <a class="dropdown-item text-light bg-dark" asp-controller="Admin" asp-action="Circuit">Circuits</a>
+                                        </div>
+                                    </li>
+                                }
+                            }
                         </ul>
                     </div>
                 </div>

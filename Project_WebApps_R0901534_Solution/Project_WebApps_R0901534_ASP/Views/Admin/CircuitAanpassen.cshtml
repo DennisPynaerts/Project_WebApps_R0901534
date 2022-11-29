@@ -3,27 +3,33 @@
     ViewData["Titel"] = "Admin - ";
 }
 
-<h1 class="custom-text-color text-center mx-3 my-5">Circuit aanpassen</h1>
-<div class="container-fluid bg-warning mb-5 pb-3 pt-3 border border-light rounded">
-    <form asp-action="CircuitAanpassen">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="CircuitId" />
-        <div class="form-group">
-            <label asp-for="Naam" class="control-label"></label>
-            <input asp-for="Naam" class="form-control" />
-            <span asp-validation-for="Naam" class="text-danger"></span>
+@if (this.User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("admin"))
+    {
+        <h1 class="custom-text-color text-center mx-3 my-5">Circuit aanpassen</h1>
+        <div class="container-fluid bg-warning mb-5 pb-3 pt-3 border border-light rounded">
+            <form asp-action="CircuitAanpassen">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CircuitId" />
+                <div class="form-group">
+                    <label asp-for="Naam" class="control-label"></label>
+                    <input asp-for="Naam" class="form-control" />
+                    <span asp-validation-for="Naam" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Afbeelding" class="control-label"></label>
+                    <input type="file" asp-for="Afbeelding" class="form-control" />
+                    <span asp-validation-for="Afbeelding" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-dark mx-auto mt-4 border border-light rounded text-light">Opslaan</button>
+                </div>
+            </form>
+            <a class="btn btn-dark mx-auto mb-2 mt-4 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="Circuit">Terug</a>
         </div>
-        <div class="form-group">
-            <label asp-for="Afbeelding" class="control-label"></label>
-            <input type="file" asp-for="Afbeelding" class="form-control" />
-            <span asp-validation-for="Afbeelding" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-dark mx-auto mt-4 border border-light rounded text-light">Opslaan</button>
-        </div>
-    </form>
-    <a class="btn btn-dark mx-auto mb-2 mt-4 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="Circuit">Terug</a>
-</div>
+    }
+}
 
 @section Scripts{
     @{

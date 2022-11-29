@@ -4,23 +4,28 @@
     ViewData["Title"] = "Circuits";
 }
 
-<h1 class="custom-text-color text-center mx-3 my-5">Details circuit</h1>
+@if (this.User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("admin"))
+    {
+        <h1 class="custom-text-color text-center mx-3 my-5">Details circuit</h1>
 
-<div class="container-fluid bg-warning mb-5 pb-3 pt-3 border border-light rounded">
-    <h2 class="custom-text-color text-center mx-3 my-5">Nummer: @Model.CircuitId</h2>
-    <h2 class="custom-text-color text-center mx-3 my-5">Naam: @Model.Naam</h2>
-    <div class="row">
-        <div class="col-md-5">
+        <div class="container-fluid bg-warning mb-5 pb-3 pt-3 border border-light rounded">
+            <h2 class="custom-text-color text-center mx-3 my-5">Nummer: @Model.CircuitId</h2>
+            <h2 class="custom-text-color text-center mx-3 my-5">Naam: @Model.Naam</h2>
+            <div class="row">
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-2">
+                    <img src="~/images/COTA.jpg" class=" img-fluid" alt="Circuit @Model.Naam">
+                </div>
+                <div class="col-md-5">
+                </div>
+            </div>
+            <a class="btn btn-dark mx-auto mb-2 mt-4 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="Circuit">Terug</a>
         </div>
-        <div class="col-md-2">
-            <img src="~/images/COTA.jpg" class=" img-fluid" alt="Circuit @Model.Naam">
-        </div>
-        <div class="col-md-5">
-            
-        </div>
-    </div>
-    <a class="btn btn-dark mx-auto mb-2 mt-4 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="Circuit">Terug</a>
-</div>
+    }
+}
 
 
 

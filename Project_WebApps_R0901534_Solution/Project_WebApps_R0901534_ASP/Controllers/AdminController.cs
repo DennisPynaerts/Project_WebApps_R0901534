@@ -19,9 +19,11 @@ using Microsoft.AspNetCore.Hosting;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Project_WebApps_R0901534_ASP.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         #region Attributes

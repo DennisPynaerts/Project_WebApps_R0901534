@@ -2,12 +2,18 @@
 @{
     ViewData["Titel"] = "Admin - ";
 }
-<h1 class="custom-text-color text-center mx-3 my-5">Circuit verwijderen</h1>
-<div class="container-fluid bg-warning mb-5 pb-3 pt-3 border border-light rounded">
-<h4 class="custom-text-color text-center mx-3 my-5">Weet je zeker dat je @Model.Naam wilt verwijderen?</h4>
-<form asp-action="VerwijderCircuit">
-    <input type="hidden" asp-for="CircuitId" />
-    <input type="submit" value="Verwijder" class="btn btn-dark mx-auto m-2 border border-light rounded text-light" />    
-</form>
-    <a class="btn btn-dark mx-auto mb-2 mt-4 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="Circuit">Terug naar lijst</a>
-</div>
+
+@if (this.User.Identity.IsAuthenticated) {
+    if (User.IsInRole("admin"))
+    {
+        <h1 class="custom-text-color text-center mx-3 my-5">Circuit verwijderen</h1>
+        <div class="container-fluid bg-warning mb-5 pb-3 pt-3 border border-light rounded">
+            <h4 class="custom-text-color text-center mx-3 my-5">Weet je zeker dat je @Model.Naam wilt verwijderen?</h4>
+            <form asp-action="VerwijderCircuit">
+                <input type="hidden" asp-for="CircuitId" />
+                <input type="submit" value="Verwijder" class="btn btn-dark mx-auto m-2 border border-light rounded text-light" />
+            </form>
+            <a class="btn btn-dark mx-auto mb-2 mt-4 border border-light rounded text-light" type="button" asp-controller="Admin" asp-action="Circuit">Terug naar lijst</a>
+        </div>
+    }
+}

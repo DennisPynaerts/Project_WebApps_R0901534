@@ -1,37 +1,41 @@
 ﻿@model Project_WebApps_R0901534_ASP.ViewModels.GebruikersListViewModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+
 @{
     ViewData["Title"] = "Gebruikers";
 }
 
-<h1 class="custom-text-color text-center mx-3 my-5">Overzicht gebruikers</h1>
+@if (this.User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("admin"))
+    {
+        <h1 class="custom-text-color text-center mx-3 my-5">Overzicht gebruikers</h1>
 
-<div class="table-responsive rounded mb-5">
-    <table class="table bg-warning table-striped border border-light">
-        <thead>
-            <tr>
-                <td class="text-light">Gebruikersnaam</td>
-                <td class="text-light">E-mailadres</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var gebruiker in Model.Gebruikers)
-            {
-                <tr class="mt-2">
-                    <td>@Html.DisplayFor(modelItem => gebruiker.UserName)</td>
-                    <td>@Html.DisplayFor(modelItem => gebruiker.Emailadres)</td>
-                    <td>
-                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@gebruiker.Id" asp-controller="Admin" asp-action="GebruikerDetails">Details</a>
-                        </td>
-                    <td>
-                        <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@gebruiker.Id" asp-controller="Admin" asp-action="VerwijderGebruiker">Verwijder</a>
-                        </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+        <div class="table-responsive rounded mb-5">
+            <table class="table bg-warning table-striped border border-light">
+                <thead>
+                    <tr>
+                        <td class="text-light">Gebruikersnaam</td>
+                        <td class="text-light">E-mailadres</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var gebruiker in Model.Gebruikers)
+                    {
+                        <tr class="mt-2">
+                            <td>@Html.DisplayFor(modelItem => gebruiker.UserName)</td>
+                            <td>@Html.DisplayFor(modelItem => gebruiker.Emailadres)</td>
+                            <td>
+                                <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@gebruiker.Id" asp-controller="Admin" asp-action="GebruikerDetails">Details</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-dark mx-auto m-2 border border-light rounded text-light" type="button" asp-route-id="@gebruiker.Id" asp-controller="Admin" asp-action="VerwijderGebruiker">Verwijder</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}
