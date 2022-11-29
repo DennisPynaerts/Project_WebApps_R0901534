@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Project_WebApps_R0901534_ASP.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_WebApps_R0901534_ASP.ViewModels
 {
@@ -16,11 +17,8 @@ namespace Project_WebApps_R0901534_ASP.ViewModels
 
         [Required]
         public string TekstAppInfo { get; set; }
-
-        [Required]
         public string Afbeelding1 { get; set; }
-
-        [Required]
         public string Afbeelding2 { get; set; }
+        public FileModel FileModel { get; set; }
     }
 }

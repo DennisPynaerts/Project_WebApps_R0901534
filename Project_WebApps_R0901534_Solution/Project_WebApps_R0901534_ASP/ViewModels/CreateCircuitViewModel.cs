@@ -10,10 +10,5 @@ namespace Project_WebApps_R0901534_ASP.ViewModels
         public string Naam { get; set; }
         public string Afbeelding { get; set; }
         public FileModel FileModel { get; set; }
-
-        private void NaamgevingAfbeelding()
-        {
-            Afbeelding = Naam;
-        }
     }
 }
