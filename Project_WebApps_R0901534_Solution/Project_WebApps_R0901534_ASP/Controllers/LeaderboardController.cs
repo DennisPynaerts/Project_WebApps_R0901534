@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Project_WebApps_R0901534_ASP.Data;
 using Project_WebApps_R0901534_ASP.Models;
 using Project_WebApps_R0901534_ASP.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Project_WebApps_R0901534_ASP.Controllers
@@ -27,19 +29,40 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
             return View(circuitListViewModel);
         }
+        //public IActionResult Detail(int id)
+        //{
+        //    Circuit circuit = _ctx.Circuits.Where(c => c.CircuitId == id).FirstOrDefault();
+        //    if (circuit == null)
+        //        return RedirectToAction("Index");
+        //    else
+        //    {
+        //        CircuitDetailViewModel circuitDetailViewModel = new CircuitDetailViewModel()
+        //        {
+        //            Naam = circuit.Naam
+        //        };
+        //        return View(circuitDetailViewModel);
+        //    }            
+        //}
+
         public IActionResult Detail(int id)
         {
+            List<Laptime> laptimes = _ctx.Laptimes
+                .Include(c => c.Circuit)
+                .ToList();
+
             Circuit circuit = _ctx.Circuits.Where(c => c.CircuitId == id).FirstOrDefault();
+
             if (circuit == null)
                 return RedirectToAction("Index");
             else
             {
-                CircuitDetailViewModel circuitDetailViewModel = new CircuitDetailViewModel()
+                LaptimeListViewModel vm = new LaptimeListViewModel()
                 {
-                    Naam = circuit.Naam
+                    Laptimes = laptimes,
+                    Circuit = circuit
                 };
-                return View(circuitDetailViewModel);
-            }            
+                return View(vm);
+            }
         }
     }
 }
