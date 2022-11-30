@@ -29,28 +29,22 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
             return View(circuitListViewModel);
         }
-        //public IActionResult Detail(int id)
-        //{
-        //    Circuit circuit = _ctx.Circuits.Where(c => c.CircuitId == id).FirstOrDefault();
-        //    if (circuit == null)
-        //        return RedirectToAction("Index");
-        //    else
-        //    {
-        //        CircuitDetailViewModel circuitDetailViewModel = new CircuitDetailViewModel()
-        //        {
-        //            Naam = circuit.Naam
-        //        };
-        //        return View(circuitDetailViewModel);
-        //    }            
-        //}
 
         public IActionResult Detail(int id)
         {
             List<Laptime> laptimes = _ctx.Laptimes
-                .Include(c => c.Circuit)
+                .Include(c => c.Circuit).Where(c => c.CircuitId == id)
                 .ToList();
 
             Circuit circuit = _ctx.Circuits.Where(c => c.CircuitId == id).FirstOrDefault();
+            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse).ToList();
+            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.Klasse).ToList();
+            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto).ToList();
+            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Gebruiker).ToList();
+            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto).ToList();
+            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto.Merk).ToList();
+            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto.Merk.Modellen).ToList();
+            laptimes = _ctx.Laptimes.Where(l => l.CircuitId == id).ToList();
 
             if (circuit == null)
                 return RedirectToAction("Index");

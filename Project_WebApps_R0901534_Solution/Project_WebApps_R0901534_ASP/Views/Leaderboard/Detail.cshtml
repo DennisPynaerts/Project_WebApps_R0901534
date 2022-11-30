@@ -14,51 +14,25 @@
                 <th class="text-sm-left text-light">Klasse</th>
                 <th class="text-sm-left text-light">Auto</th>
                 <th class="text-sm-left text-light">Rondetijd</th>
-                <th class="text-sm-left text-light">Handling</th>
+                <th class="text-sm-left text-light">PI</th>
                 <th class="text-sm-left text-light">Datum</th>
                 <th class="text-sm-left text-light">Nickname</th>
             </tr>
         </thead>
         <tbody>
-            @for (int i = 1; i < Model.Laptimes.Count; i++)
+            @for (int i = 0; i < Model.Laptimes.Count; i++)
             {
+                int pos = i + 1;
                 <tr class="mt-2">
-                    <td>@Html.DisplayFor(modelItem => i)</td>
-                    <td>@Html.DisplayFor(modelItem => Model.Laptimes[0].AutoKlasse.Klasse.Naam)</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>@Html.DisplayFor(modelItem => pos)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.Klasse.Naam)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.GebruikerAuto.Auto.Merk.Naam)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].Rondetijd)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.GebruikerAuto.Auto.TotalePI)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].Datum.Date)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.GebruikerAuto.Gebruiker.Nickname)</td>
                 </tr>
             }
-            <tr>
-                <td>1</td>
-                <td>S800</td>
-                <td>Lamborghini Reventon</td>
-                <td>01.30.568</td>
-                <td>6.5H</td>
-                <td>19-11-2022</td>
-                <td>LeRacer</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>S800</td>
-                <td>Lamborghini Diablo</td>
-                <td>01.30.864</td>
-                <td>6.2H</td>
-                <td>18-11-2022</td>
-                <td>LeRacer</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>S800</td>
-                <td>Ford GT</td>
-                <td>01.30.931</td>
-                <td>6.4H</td>
-                <td>17-11-2022</td>
-                <td>LeRacer</td>
-            </tr>
         </tbody>
     </table>
 </div>
