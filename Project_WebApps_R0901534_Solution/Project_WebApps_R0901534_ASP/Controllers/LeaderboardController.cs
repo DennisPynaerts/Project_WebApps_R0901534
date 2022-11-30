@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Project_WebApps_R0901534_ASP.Data;
 using Project_WebApps_R0901534_ASP.Models;
 using Project_WebApps_R0901534_ASP.ViewModels;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Project_WebApps_R0901534_ASP.Controllers
 {
@@ -30,6 +33,8 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             return View(circuitListViewModel);
         }
 
+        #region leaderboards tonen
+
         public IActionResult Detail(int id)
         {
             List<Laptime> laptimes = _ctx.Laptimes
@@ -43,7 +48,6 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Gebruiker).ToList();
             laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto).ToList();
             laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto.Merk).ToList();
-            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto.Merk.Modellen).ToList();
             laptimes = _ctx.Laptimes.Where(l => l.CircuitId == id).ToList();
 
             if (circuit == null)
@@ -57,6 +61,24 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 };
                 return View(vm);
             }
+        }
+
+        #endregion
+
+        public async Task<IActionResult> CircuitToevoegen(CreateCircuitViewModel viewModel)
+        {
+           
+
+            if (ModelState.IsValid)
+            {
+                _ctx.Add(new Circuit()
+                {
+                    Naam = viewModel.Naam,
+                });
+                await _ctx.SaveChangesAsync();
+                return RedirectToAction("Circuit");
+            }
+            return View(viewModel);
         }
     }
 }
