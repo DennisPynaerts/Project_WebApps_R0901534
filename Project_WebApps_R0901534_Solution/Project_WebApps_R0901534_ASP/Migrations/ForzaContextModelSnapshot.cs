@@ -255,7 +255,10 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     b.Property<int>("Kostprijs")
                         .HasColumnType("int");
 
-                    b.Property<int>("MerkId")
+                    b.Property<int?>("MerkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ModelId")
                         .HasColumnType("int");
 
                     b.Property<int>("PK")
@@ -267,6 +270,8 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     b.HasKey("AutoId");
 
                     b.HasIndex("MerkId");
+
+                    b.HasIndex("ModelId");
 
                     b.ToTable("Autos");
                 });
@@ -525,9 +530,13 @@ namespace Project_WebApps_R0901534_ASP.Migrations
 
             modelBuilder.Entity("Project_WebApps_R0901534_ASP.Models.Auto", b =>
                 {
-                    b.HasOne("Project_WebApps_R0901534_ASP.Models.Merk", "Merk")
+                    b.HasOne("Project_WebApps_R0901534_ASP.Models.Merk", null)
                         .WithMany("Autos")
-                        .HasForeignKey("MerkId")
+                        .HasForeignKey("MerkId");
+
+                    b.HasOne("Project_WebApps_R0901534_ASP.Models.Model", "Model")
+                        .WithMany()
+                        .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
