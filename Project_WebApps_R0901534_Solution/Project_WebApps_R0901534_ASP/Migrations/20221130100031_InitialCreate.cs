@@ -103,31 +103,6 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Autos",
-                columns: table => new
-                {
-                    AutoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BasisPI = table.Column<int>(nullable: false),
-                    PK = table.Column<int>(nullable: false),
-                    Aandrijflijn = table.Column<string>(nullable: true),
-                    Bouwjaar = table.Column<int>(nullable: false),
-                    TotalePI = table.Column<int>(nullable: false),
-                    Kostprijs = table.Column<int>(nullable: false),
-                    MerkId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Autos", x => x.AutoId);
-                    table.ForeignKey(
-                        name: "FK_Autos_Merken_MerkId",
-                        column: x => x.MerkId,
-                        principalTable: "Merken",
-                        principalColumn: "MerkId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Models",
                 columns: table => new
                 {
@@ -181,6 +156,38 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                         principalTable: "OverMijs",
                         principalColumn: "OverMijId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Autos",
+                columns: table => new
+                {
+                    AutoId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BasisPI = table.Column<int>(nullable: false),
+                    PK = table.Column<int>(nullable: false),
+                    Aandrijflijn = table.Column<string>(nullable: true),
+                    Bouwjaar = table.Column<int>(nullable: false),
+                    TotalePI = table.Column<int>(nullable: false),
+                    Kostprijs = table.Column<int>(nullable: false),
+                    ModelId = table.Column<int>(nullable: false),
+                    MerkId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Autos", x => x.AutoId);
+                    table.ForeignKey(
+                        name: "FK_Autos_Merken_MerkId",
+                        column: x => x.MerkId,
+                        principalTable: "Merken",
+                        principalColumn: "MerkId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Autos_Models_ModelId",
+                        column: x => x.ModelId,
+                        principalTable: "Models",
+                        principalColumn: "ModelId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -408,6 +415,11 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                 column: "MerkId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Autos_ModelId",
+                table: "Autos",
+                column: "ModelId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GebruikerAutos_AutoId",
                 table: "GebruikerAutos",
                 column: "AutoId");
@@ -454,9 +466,6 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                 name: "Laptimes");
 
             migrationBuilder.DropTable(
-                name: "Models");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -478,10 +487,13 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Merken");
+                name: "Models");
 
             migrationBuilder.DropTable(
                 name: "OverMijs");
+
+            migrationBuilder.DropTable(
+                name: "Merken");
         }
     }
 }

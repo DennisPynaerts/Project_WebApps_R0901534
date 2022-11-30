@@ -2,7 +2,6 @@
     ViewData["Title"] = "Leaderboard - ";
 }
 @model Project_WebApps_R0901534_ASP.ViewModels.LaptimeListViewModel
-// omzetten naar laptime viewmodel
 
 <h1 class="text-center mt-5 mb-5 me-1">@Model.Circuit.Naam</h1>
 
@@ -23,13 +22,18 @@
             @for (int i = 0; i < Model.Laptimes.Count; i++)
             {
                 int pos = i + 1;
+                var datum = Model.Laptimes[i].Datum.ToShortDateString();
+
                 <tr class="mt-2">
                     <td>@Html.DisplayFor(modelItem => pos)</td>
                     <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.Klasse.Naam)</td>
-                    <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.GebruikerAuto.Auto.Merk.Naam)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.GebruikerAuto.Auto.Model.Merk.Naam)
+                        @Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.GebruikerAuto.Auto.Model.Naam)
+                        </td>
                     <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].Rondetijd)</td>
                     <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.GebruikerAuto.Auto.TotalePI)</td>
-                    <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].Datum.Date)</td>
+                    <td>@Html.DisplayFor(modelItem => datum)</td>
                     <td>@Html.DisplayFor(modelItem => Model.Laptimes[i].AutoKlasse.GebruikerAuto.Gebruiker.Nickname)</td>
                 </tr>
             }

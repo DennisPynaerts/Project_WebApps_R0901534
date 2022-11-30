@@ -20,11 +20,11 @@ namespace Project_WebApps_R0901534_ASP.Models
         public int Kostprijs { get; set; }
 
         // Foreign Keys
-        public int MerkId { get; set; }
+        public int ModelId { get; set; }
 
         // Navigation Properties
 
-        public Merk Merk { get; set; }
+        public Model Model { get; set; }
         public virtual ICollection<GebruikerAuto> GebruikerAutos { get; set; }
     }
 }

@@ -47,7 +47,8 @@ namespace Project_WebApps_R0901534_ASP.Controllers
             laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto).ToList();
             laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Gebruiker).ToList();
             laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto).ToList();
-            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto.Merk).ToList();
+            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto.Model).ToList();
+            laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto.Model.Merk).ToList();
             laptimes = _ctx.Laptimes.Where(l => l.CircuitId == id).ToList();
 
             if (circuit == null)

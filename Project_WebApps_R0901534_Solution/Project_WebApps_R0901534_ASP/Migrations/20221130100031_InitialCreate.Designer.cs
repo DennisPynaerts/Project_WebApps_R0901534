@@ -10,8 +10,8 @@ using Project_WebApps_R0901534_ASP.Data;
 namespace Project_WebApps_R0901534_ASP.Migrations
 {
     [DbContext(typeof(ForzaContext))]
-    [Migration("20221127150133_RemoveIdOverrideCustomUser")]
-    partial class RemoveIdOverrideCustomUser
+    [Migration("20221130100031_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -257,7 +257,10 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     b.Property<int>("Kostprijs")
                         .HasColumnType("int");
 
-                    b.Property<int>("MerkId")
+                    b.Property<int?>("MerkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ModelId")
                         .HasColumnType("int");
 
                     b.Property<int>("PK")
@@ -269,6 +272,8 @@ namespace Project_WebApps_R0901534_ASP.Migrations
                     b.HasKey("AutoId");
 
                     b.HasIndex("MerkId");
+
+                    b.HasIndex("ModelId");
 
                     b.ToTable("Autos");
                 });
@@ -527,9 +532,13 @@ namespace Project_WebApps_R0901534_ASP.Migrations
 
             modelBuilder.Entity("Project_WebApps_R0901534_ASP.Models.Auto", b =>
                 {
-                    b.HasOne("Project_WebApps_R0901534_ASP.Models.Merk", "Merk")
+                    b.HasOne("Project_WebApps_R0901534_ASP.Models.Merk", null)
                         .WithMany("Autos")
-                        .HasForeignKey("MerkId")
+                        .HasForeignKey("MerkId");
+
+                    b.HasOne("Project_WebApps_R0901534_ASP.Models.Model", "Model")
+                        .WithMany()
+                        .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
