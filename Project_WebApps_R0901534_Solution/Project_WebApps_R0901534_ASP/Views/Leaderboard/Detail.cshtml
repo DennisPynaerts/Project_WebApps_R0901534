@@ -3,7 +3,8 @@
 }
 @model Project_WebApps_R0901534_ASP.ViewModels.LaptimeListViewModel
 
-<h1 class="text-center mt-5 mb-5 me-1">@Model.Circuit.Naam</h1>
+<h1 class="text-center mt-5 mb-5 me-1" id="circuitnaam" onload="loadHandler()">@Model.Circuit.Naam</h1>
+<input type="hidden" value="@Model.Circuit.CircuitId" asp-for="CircuitId" />
 
 <div class="table-responsive rounded">
     <table class="table bg-warning table-striped border border-light">
@@ -39,58 +40,74 @@
             }
         </tbody>
     </table>
-</div>
+</div>   
 
+@if (this.User.Identity.IsAuthenticated)
+{
     <h1 class="text-center mt-5 mb-5">Rondetijd toevoegen</h1>
 
-    
-    <div class="container-fluid bg-warning p-5 mb-5 border border-light rounded">
-        <fieldset>
-            <legend class="text-center mb-5">Rondetijd registreren</legend>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <select class="p-1">
-                    <option>Auto's</option>
-                    <option>Ford GT 6.4H</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                </select>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <input type="text" class="mt-1" placeholder="Rondetijd {00.00.000}" />
-            </div>
-        </div>        
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-3">
-        <button class="btn-dark border border-light rounded py-1 px-2">Voeg rondetijd toe</button>
+    <div class="container-fluid bg-warning mb-5 pb-3 pt-3 border border-light rounded">
+        <form method="post" enctype="multipart/form-data" asp-controller="Leaderboard" asp-action="LaptimeToevoegen">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" value="@this.User" asp-for="Gebruiker"/>
+            <input type="hidden" value="@Model.Circuit.CircuitId" asp-for="CircuitId"/>
+            <fieldset>
+                <legend class="text-center mb-5">Rondetijd registreren</legend>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <label class="control-label">Auto</label><br/>
+                        <select class="p-2" asp-for="@Model.GebruikerAutoId" asp-items="Model.GebruikerAutos"></select>
+                        <span asp-validation-for="GebruikerAutoId" class="text-danger"/>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label asp-for="Rondetijd" class="control-label">Rondetijd</label>
+                        <input asp-for="Rondetijd" class="form-control" placeholder="Format {00.00.000}" />
+                        <span asp-validation-for="Rondetijd" class="text-danger"></span>
+                    </div>
+                </div>             
+            </fieldset>
+            <button type="submit" class="btn-dark border border-light rounded py-1 px-2 mt-3">Voeg rondetijd toe</button>
+        </form>
+        <form method="post" enctype="multipart/form-data" asp-controller="Leaderboard" asp-action="LaptimeMetAutoToevoegen">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" value="@this.User" asp-for="Gebruiker" />
+            <input type="hidden" value="@Model.Circuit.CircuitId" asp-for="CircuitId" />
+            <fieldset class="mt-4">
+                <legend class="text-center mb-5">Voeg auto + rondetijd toe</legend>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <label asp-for="Merknaam" class="control-label">Merk</label>
+                        <input asp-for="Merknaam" class="form-control" placeholder="Naam merk"/>
+                        <span asp-validation-for="Merknaam" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label asp-for="Modelnaam" class="control-label">Model</label>
+                        <input asp-for="Modelnaam" class="form-control" placeholder="Naam model" />
+                        <span asp-validation-for="Modelnaam" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6 col-sm-12">
+                        <label asp-for="PI" class="control-label">PI</label>
+                        <input asp-for="PI" class="form-control" placeholder="PI" />
+                        <span asp-validation-for="PI" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label asp-for="Rondetijd" class="control-label">Rondetijd</label>
+                        <input asp-for="Rondetijd" class="form-control" placeholder="Format {00.00.000}" />
+                        <span asp-validation-for="Rondetijd" class="text-danger"></span>
+                    </div>
+                </div>              
+            </fieldset>
+                <button type="submit" class="btn-dark border border-light rounded py-1 px-2 mt-3">Voeg rondetijd toe</button>
+        </form>
     </div>
-    </fieldset>
-    <fieldset class="mt-4">
-        <legend class="text-center mb-5">Voeg auto + rondetijd toe</legend>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <input type="text" class="mt-1" placeholder="Merk" />
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <input type="text" class="mt-1" placeholder="Model" />
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-md-6 col-sm-12">
-                <input type="text" class="mt-1" placeholder="Handling" />
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <input type="text" class="mt-1" placeholder="PI" />
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-md-6 col-sm-12">
-                <input type="text" class="mt-1" placeholder="Rondetijd {00.00.000}" />
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <button class="btn-dark border border-light rounded py-1 px-2">Voeg rondetijd toe</button>
-            </div>
-        </div>
-    </fieldset>
-    </div>
+}
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
 
     

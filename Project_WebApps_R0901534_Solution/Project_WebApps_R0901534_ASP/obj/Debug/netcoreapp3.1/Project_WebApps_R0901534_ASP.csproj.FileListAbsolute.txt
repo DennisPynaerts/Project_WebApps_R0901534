@@ -188,8 +188,15 @@ C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_Web
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AdminOverMij.cshtml.g.cs
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Circuit.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CircuitAanpassen.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CircuitDetails.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CircuitToevoegen.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\GebruikerDetails.cshtml.g.cs
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\RollenBeheer.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\VerwijderCircuit.cshtml.g.cs
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Error.cshtml.g.cs
+C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Galerij\Index.cshtml.g.cs
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Index.cshtml.g.cs
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Leaderboard\Detail.cshtml.g.cs
@@ -208,10 +215,3 @@ C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_Web
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Project_WebApps_R0901534_ASP.dll
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Project_WebApps_R0901534_ASP.pdb
 C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Project_WebApps_R0901534_ASP.genruntimeconfig.cache
-C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\RollenBeheer.cshtml.g.cs
-C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\GebruikerDetails.cshtml.g.cs
-C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CircuitDetails.cshtml.g.cs
-C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\VerwijderCircuit.cshtml.g.cs
-C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CircuitToevoegen.cshtml.g.cs
-C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CircuitAanpassen.cshtml.g.cs
-C:\TM\GIT\Project_WebApps_R0901534\Project_WebApps_R0901534_Solution\Project_WebApps_R0901534_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Galerij\Index.cshtml.g.cs
