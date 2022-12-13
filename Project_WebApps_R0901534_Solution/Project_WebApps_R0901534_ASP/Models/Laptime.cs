@@ -26,5 +26,10 @@ namespace Project_WebApps_R0901534_ASP.Models
 
         public AutoKlasse AutoKlasse { get; set; }
         public Circuit Circuit { get; set; }
+
+        public Laptime()
+        {
+            
+        }
     }
 }
