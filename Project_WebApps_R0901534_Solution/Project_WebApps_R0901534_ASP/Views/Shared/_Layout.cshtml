@@ -42,7 +42,7 @@
                             </li>
                             @if (this.User.Identity.IsAuthenticated)
                             {
-                                if (User.IsInRole("admin"))
+                                if (User.IsInRole("admin") || User.IsInRole("user"))
                                 {
                                     <li class="nav-item dropdown mx-5">
                                         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Admin </a>

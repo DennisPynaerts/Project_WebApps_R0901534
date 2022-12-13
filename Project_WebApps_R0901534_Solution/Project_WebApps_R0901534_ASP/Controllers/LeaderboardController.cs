@@ -50,15 +50,6 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
             Circuit circuit = _ctx.Circuits.Where(c => c.CircuitId == id).FirstOrDefault();
 
-            //List <Laptime> laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse).ToList();
-            //laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.Klasse).ToList();
-            //laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto).ToList();
-            //laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Gebruiker).ToList();
-            //laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto).ToList();
-            //laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto.Model).ToList();
-            //laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto.Auto.Model.Merk).ToList();
-            //laptimes = _ctx.Laptimes.Where(l => l.CircuitId == id).OrderBy(x => x.Rondetijd).ToList();
-
             List<Laptime> laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse).ToList();
             laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.Klasse).ToList();
             laptimes = _ctx.Laptimes.Include(l => l.AutoKlasse.GebruikerAuto).ToList();
@@ -141,17 +132,15 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 await _ctx.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            else return RedirectToAction("Index");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LaptimeMetAutoToevoegen(LaptimeListViewModel viewModel)
         {
-            if (ModelState.IsValid && ValidateLaptime(viewModel.Rondetijd))
+            if (ModelState.IsValid && ValidateLaptime(viewModel.Rondetijd) && viewModel.PI > 0)
             {
-                // Zoeken of het merk al bestaat, zo ja, ID nemen en aan model toevoegen
-
                 MerkEnModelToevoegen(viewModel);
 
                 #region comments
@@ -160,14 +149,33 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 // Bijvoorbeeld, tekstveld voor handling erbij, als er 2 Ford Mustangs zijn met een verschillende handling en eenzelfde PI, dan zijn dit 2 verschillende modellen
                 // ondanks de PI hetzelfde is, hetzelfde geld voor PK
                 // Handling en PK niet inbegrepen omdat tabel anders veel te breed wordt om te tonen op kleine schermen
-                // 
+
+                // Nakijken of de gebruiker al eenzelfde model in zijn verzameling van modellen heeft, met een vergelijking van de PI van de auto
+                // Als deze lijst leeg is, wordt het modelId van het laatst aangemaakte model genomen, anders wordt het modelId van het 1e element van de lijst genomen
+                // Het is een lijst voor uitbreidbaarheid, moesten er in de toekomst extra properties bijkomen, kan het zijn dat er meer gefilterd moet kunnen worden
+
                 #endregion
 
-                _ctx.Add(new Auto()
+                List<GebruikerAuto> bestaatModel = _ctx.GebruikerAutos.Include(ga => ga.Gebruiker)
+                    .Where(model => model.Auto.Model.Naam == viewModel.Modelnaam && model.Auto.TotalePI != viewModel.PI && model.Gebruiker.UserName == User.Identity.Name)
+                    .ToList();
+
+                if (!bestaatModel.Any())
                 {
-                    TotalePI = viewModel.PI,
-                    ModelId = _ctx.Models.Where(model => model.Naam.ToLower() == viewModel.Modelnaam.ToLower()).SingleOrDefault().ModelId
-                });
+                    _ctx.Add(new Auto()
+                    {
+                        TotalePI = viewModel.PI,
+                        ModelId = _ctx.Models.OrderByDescending(model => model.ModelId).FirstOrDefault().ModelId
+                    });
+                }
+                else
+                {
+                    _ctx.Add(new Auto()
+                    {
+                        TotalePI = viewModel.PI,
+                        ModelId = bestaatModel[0].Auto.ModelId
+                    });                    
+                }
                 _ctx.SaveChanges();
 
                 GebruikerAuto gebruikerAuto = new GebruikerAuto()
@@ -202,10 +210,16 @@ namespace Project_WebApps_R0901534_ASP.Controllers
         #endregion
 
         #region Extra methodes
-
         private void MerkEnModelToevoegen(LaptimeListViewModel vm)
         {
-            List<Merk> bestaatMerk = _ctx.Merken.Where(merk => merk.Naam.ToLower().Contains(vm.Merknaam.ToLower())).ToList();
+            // Zoeken of het merk al bestaat, zo ja, ID nemen en aan model toevoegen
+
+            List<GebruikerAuto> bestaatMerk = _ctx.GebruikerAutos
+                .Include(ga => ga.Auto)
+                .ThenInclude(ga => ga.Model)
+                .ThenInclude(ga => ga.Merk)
+                .Where(merk => merk.Auto.Model.Merk.Naam.ToLower() == vm.Merknaam.ToLower())
+                .ToList();
 
             if (bestaatMerk.Count == 0)
             {
@@ -226,26 +240,29 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 _ctx.Add(new Model()
                 {
                     Naam = vm.Modelnaam,
-                    MerkId = bestaatMerk[0].MerkId
+                    MerkId = bestaatMerk[0].Auto.Model.Merk.MerkId
                 });
                 _ctx.SaveChanges();
             }
         }
-
+        
         private bool ValidateLaptime(string rondetijd)
         {
             if (!string.IsNullOrWhiteSpace(rondetijd))
             {
-                string laptime = rondetijd;
-                string minutes = laptime.Substring(0, 2);
-                string seconds = laptime.Substring(3, 2);
-                string milliseconds = laptime.Substring(6, 3);
-
-                if (laptime[2] == '.' && laptime[5] == '.')
+                if (rondetijd.Length == 9)
                 {
-                    if (int.TryParse(minutes, out _) && int.TryParse(seconds, out _) && int.TryParse(milliseconds, out _))
-                        return true;
-                }
+                    string laptime = rondetijd;
+                    string minutes = laptime.Substring(0, 2);
+                    string seconds = laptime.Substring(3, 2);
+                    string milliseconds = laptime.Substring(6, 3);
+
+                    if (laptime[2] == '.' && laptime[5] == '.')
+                    {
+                        if (int.TryParse(minutes, out _) && int.TryParse(seconds, out _) && int.TryParse(milliseconds, out _))
+                            return true;
+                    }
+                }                
             }
             return false;
         }

@@ -3,10 +3,10 @@
 }
 @model Project_WebApps_R0901534_ASP.ViewModels.LaptimeListViewModel
 
-<h1 class="text-center mt-5 mb-5 me-1" id="circuitnaam" onload="loadHandler()">@Model.Circuit.Naam</h1>
+<h1 class="text-center mt-5 mb-5 me-1">@Model.Circuit.Naam</h1>
 <input type="hidden" value="@Model.Circuit.CircuitId" asp-for="CircuitId" />
 
-<div class="table-responsive rounded">
+<div class="table-responsive rounded mb-5">
     <table class="table bg-warning table-striped border border-light">
         <thead>
             <tr>
