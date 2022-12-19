@@ -27,10 +27,5 @@ namespace Project_WebApps_R0901534_ASP.Data
         {
             base.OnModelCreating(builder);
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Forza;Trusted_Connection=True;");
-        }
     }
 }

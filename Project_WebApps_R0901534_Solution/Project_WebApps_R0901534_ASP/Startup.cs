@@ -27,7 +27,8 @@ namespace Project_WebApps_R0901534_ASP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<ForzaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDBConnection")));
+            //services.AddDbContext<ForzaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDBConnection")));
+            services.AddDbContext<ForzaContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BakerConnection")));
             services.AddDefaultIdentity<Gebruiker>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ForzaContext>();
             services.AddRazorPages();
         }
