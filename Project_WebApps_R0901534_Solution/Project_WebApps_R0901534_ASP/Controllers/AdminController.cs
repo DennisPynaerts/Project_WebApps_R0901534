@@ -292,6 +292,10 @@ namespace Project_WebApps_R0901534_ASP.Controllers
 
         public async Task<IActionResult> CircuitToevoegen(CreateCircuitViewModel viewModel, IFormFile postedFile)
         {
+            if (postedFile == null)
+            {
+                return RedirectToAction("Circuit");
+            }
             string path = Path.Combine(this._environment.WebRootPath, "circuits");
             if (!Directory.Exists(path))
             {
@@ -316,7 +320,7 @@ namespace Project_WebApps_R0901534_ASP.Controllers
                 _ctx.Add(new Circuit()
                 {
                     Naam = viewModel.Naam,
-                    Afbeelding = fileName + System.IO.Path.GetExtension(fileName)
+                    Afbeelding = fileName // + System.IO.Path.GetExtension(fileName)
                 }) ;
                 await _ctx.SaveChangesAsync();
                 return RedirectToAction("Circuit");
